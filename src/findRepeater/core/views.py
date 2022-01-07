@@ -1,17 +1,11 @@
 from django.shortcuts import render
-from django.views.generic import View
+from django.http import HttpResponse
 
-# Create your views here.
-
-class HomeView(View):
-   template_name = "core/index.html"
-
-class ConnexionView(View):
-   template_name = "core/connexion.html"
-      
-class InscriptionensView(View):
-   template_name = "core/inscriptionEns.html"
-         
-class InscriptionView(View):
-   template_name = "core/inscription.html"
-
+def index(request):
+    return render(request,'core/index.html')
+def inscription(request):
+    return render(request,'core/inscription.html')
+def parent(request):
+    return render(request, 'core/parent.html')
+def connexio(request):
+    return render(request, 'core/connexio.html')
