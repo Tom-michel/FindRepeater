@@ -22,10 +22,18 @@ class Cours(models.Model):
     titre = models.CharField(max_length=200, null=True)
 
     #la clé de Matiere migre vers Cours
-    matiere = models.ForeignKey(Matiere, null=True, on_delete=models.SET_NULL)
+    matiere = models.ForeignKey(Matiere, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.titre
+
+class Discipline(models.Model):
+    matiere = models.ForeignKey(Matiere, null=True, on_delete=models.CASCADE)
+    classe = models.ForeignKey(Classe, null=True, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.matiere.intitulé +" "+ self.classe.niveau
+
 
 class Enseignant(models.Model):
     CIVILITE = (('Mr','Mr'),
@@ -33,7 +41,7 @@ class Enseignant(models.Model):
                 ('Mle','Mle'))
     dateNais = models.DateField(null=True)
     niveauEtude = models.CharField(max_length=200, null=True)
-    photoProfil = models.ImageField
+    photoProfil = models.ImageField(null=True)
     ville = models.CharField(max_length=200, null=True)
     quartier = models.CharField(max_length=200, null=True)
     civilité = models.CharField(max_length=200, null=True, choices=CIVILITE)
@@ -44,9 +52,10 @@ class Enseignant(models.Model):
     password = models.CharField(max_length=200, null=True)
 
     #relation many-to-many avec Classe
-    classeEns = models.ManyToManyField(Classe)
+    #classeEns = models.ManyToManyField(Classe)
+    disciplineEns = models.ManyToManyField(Discipline)
     #relation many-to-many avec Matiere
-    matiereEns = models.ManyToManyField(Matiere)
+    #matiereEns = models.ManyToManyField(Matiere)
 
     def __str__(self):
         info = self.prenom+" "+self.nom
@@ -69,4 +78,3 @@ class Client(models.Model):
     def __str__(self):
         info = self.prenom+" "+self.nom
         return info
-
