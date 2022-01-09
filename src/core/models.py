@@ -1,7 +1,10 @@
 from django.db import models
-from django.db.models.deletion import SET_NULL
+from django.db.models.deletion import CASCADE, SET_NULL
+import os
 
 # Create your models here.
+
+# creation de la classe Classe
 
 class Classe(models.Model):
     niveau = models.CharField(max_length=200, null=True)
@@ -9,72 +12,86 @@ class Classe(models.Model):
     def __str__(self):
         return self.niveau
 
-class Matiere(models.Model):
-    intitulé = models.CharField(max_length=200, null=True)
+# creation de la classe Matiere
 
-    #relation many-to-many avec Classe
-    classeMat = models.ManyToManyField(Classe)
+class Matiere(models.Model):
+    intitule = models.CharField(max_length=200, null=True)
 
     def __str__(self):
-        return self.intitulé
+        return self.intitule
+
+# creation de la classe cours
 
 class Cours(models.Model):
-    titre = models.CharField(max_length=200, null=True)
+    jour = models.CharField(max_length=200, null=True)
+    heure = models.TimeField(null=True)
 
-    #la clé de Matiere migre vers Cours
+    # un Cours a une seulle Matiere
     matiere = models.ForeignKey(Matiere, null=True, on_delete=models.CASCADE)
 
+    # un Cours concerne une seule Classe
+    classe = models.ForeignKey(Classe, null=True, on_delete=CASCADE)
+
+# creation la classe Utilisateur
+
+class Utilisateur(models.Model):
+    nom = models.CharField(max_length=200, null=True)
+    prenom = models.CharField(max_length=200, null=True)
+    telephone = models.CharField(max_length=200, null=True)
+    email = models.EmailField(max_length=200, null=True)
+    password = models.CharField(max_length=200, null=True)
+
+    # s'inscrire sur la platefoerme
+    def inscrire():
+        pass
+    
+    # se connecter à son compte
+    def connecter():
+        pass
+
+    class Meta:
+        abstract = True
+
+# creation de la classe Client(élève/parent d'élève) qui est un Utilisateur
+
+class Client(Utilisateur):
+
     def __str__(self):
-        return self.titre
+        info = self.prenom+" "+self.nom
+        return info
+    
+    # rechercher un Repetiteur
+    def rechercher(self, matiere, classe, ville, quartier):
+        pass
 
-class Discipline(models.Model):
-    matiere = models.ForeignKey(Matiere, null=True, on_delete=models.CASCADE)
-    classe = models.ForeignKey(Classe, null=True, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.matiere.intitulé +" "+ self.classe.niveau
+    # consulter le profil d'un Repetiteur
+    def consulterProfil(sel, repetiteur):
+        pass
 
 
-class Enseignant(models.Model):
+# creation de la classe Repetiteur qui est un Utilisateur
+
+class Repetiteur(Utilisateur):
     CIVILITE = (('Mr','Mr'),
-                ('Mme','Mme'),
-                ('Mle','Mle'))
+                ('Mme','Mme'))
+    civilité = models.CharField(max_length=200, null=True, choices=CIVILITE)
     dateNais = models.DateField(null=True)
     niveauEtude = models.CharField(max_length=200, null=True)
-    photoProfil = models.ImageField(null=True)
     ville = models.CharField(max_length=200, null=True)
     quartier = models.CharField(max_length=200, null=True)
-    civilité = models.CharField(max_length=200, null=True, choices=CIVILITE)
-    prenom = models.CharField(max_length=200, null=True)
-    nom = models.CharField(max_length=200, null=True)
-    telephone = models.CharField(max_length=200, null=True)
-    email = models.EmailField(max_length=200, null=True)
-    password = models.CharField(max_length=200, null=True)
+    photoProfil = models.ImageField()  
 
-    #relation many-to-many avec Classe
-    #classeEns = models.ManyToManyField(Classe)
-    disciplineEns = models.ManyToManyField(Discipline)
-    #relation many-to-many avec Matiere
-    #matiereEns = models.ManyToManyField(Matiere)
+    # un Reptiteur donne plusieurs Cours
+    listCours = models.ManyToManyField(Cours)
 
     def __str__(self):
-        info = self.prenom+" "+self.nom
+        info = self.civilité+" "+self.prenom+" "+self.nom
         return info
+   
+    # s'inscrire : redefinir la methdode inscrire() de Utilisateur
+    def inscrire():
+        pass
 
-class Client(models.Model):
-    CIVILITE = (('Mr','Mr'),
-                ('Mme','Mme'),
-                ('Mle','Mle'))
-    civilité = models.CharField(max_length=200, null=True, choices=CIVILITE)
-    prenom = models.CharField(max_length=200, null=True)
-    nom = models.CharField(max_length=200, null=True)
-    telephone = models.CharField(max_length=200, null=True)
-    email = models.EmailField(max_length=200, null=True)
-    password = models.CharField(max_length=200, null=True)
-
-    #relation many-to-many avec Cours
-    coursCli = models.ManyToManyField(Cours)
-
-    def __str__(self):
-        info = self.prenom+" "+self.nom
-        return info
+    # modifier son profil (deja inscrit)
+    def modifierProfil(self):
+        pass
