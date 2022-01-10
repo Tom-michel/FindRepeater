@@ -39,6 +39,9 @@ class Cours(models.Model):
 # creation la classe Utilisateur
 
 class Utilisateur(models.Model):
+    CIVILITE = (('Mr','Mr'),
+                ('Mme','Mme'))
+    civilité = models.CharField(max_length=200, null=True, choices=CIVILITE)
     nom = models.CharField(max_length=200, null=True)
     prenom = models.CharField(max_length=200, null=True)
     telephone = models.CharField(max_length=200, null=True)
@@ -61,7 +64,7 @@ class Utilisateur(models.Model):
 class Client(Utilisateur):
 
     def __str__(self):
-        info = self.prenom+" "+self.nom
+        info = self.civilité+" "+self.prenom+" "+self.nom
         return info
     
     # rechercher un Repetiteur
@@ -76,9 +79,6 @@ class Client(Utilisateur):
 # creation de la classe Repetiteur qui est un Utilisateur
 
 class Repetiteur(Utilisateur):
-    CIVILITE = (('Mr','Mr'),
-                ('Mme','Mme'))
-    civilité = models.CharField(max_length=200, null=True, choices=CIVILITE)
     dateNais = models.DateField(null=True)
     niveauEtude = models.CharField(max_length=200, null=True)
     ville = models.CharField(max_length=200, null=True)
