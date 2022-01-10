@@ -1,69 +1,105 @@
 from django.db import models
+from django.db.models.deletion import CASCADE, SET_NULL
+import os
 
 
-# creation de la table abstract personne
+# Create your models here.
 
-class Person(models.Model):
-    nom = models.CharField(max_length=20)
-    prenom = models.CharField(max_length=20)
-    telephone = models.IntegerField()
-    email = models.EmailField(max_length=50)
-    password = models.CharField(max_length=30)
-    class Meta:
-        abstract = True
+# creation de la classe Classe
 
+class Classe(models.Model):
+    niveau = models.CharField(max_length=200, null=True)
 
-# creation de la classe Plateforme
-
-class Plateforme(models.Model):
-
-    class Meta:
-        abstract = True
-        verbose_name = "FindRepeater"
+    def __str__(self):
+        return self.niveau
 
 
-# Creation de la classe repetiteur qui est une personne
+# creation de la classe Matiere
 
-class Repetiteur(Person):
-    sexe = models.CharField(max_length=10)
-    dateNais = models.DateField(verbose_name="date de naissance")
-    ville = models.CharField(max_length=25)
-    quartier = models.CharField(max_length=20)
-    niveau_etude = models.CharField(max_length=15)
-    photo = models.ImageField()
+class Matiere(models.Model):
+    intitule = models.CharField(max_length=200, null=True)
 
-    def modifierProfil(self):
+    def __str__(self):
+        return self.intitule
+
+
+# creation de la classe cours
+
+class Cours(models.Model):
+    jour = models.CharField(max_length=200, null=True)
+    heure = models.TimeField(null=True)
+
+    # un Cours a une seule Matiere
+    matiere = models.ForeignKey(Matiere, null=True, on_delete=models.CASCADE)
+
+    # un Cours concerne une seule Classe
+    classe = models.ForeignKey(Classe, null=True, on_delete=CASCADE)
+
+
+# creation la classe Utilisateur
+
+class Utilisateur(models.Model):
+    nom = models.CharField(max_length=200, null=True)
+    prenom = models.CharField(max_length=200, null=True)
+    telephone = models.CharField(max_length=200, null=True)
+    email = models.EmailField(max_length=200, null=True)
+    password = models.CharField(max_length=200, null=True)
+
+    # s'inscrire sur la PlatformIO
+    def inscrire(self):
+        pass
+
+    # se connecter à son compte
+    def connecter(self):
         pass
 
     class Meta:
-        verbose_name = "Informations repetiteur"
+        abstract = True
 
 
-# creation de la classe client qui vas heriter des attribut de la classe personne
+# creation de la classe Client(élève/parent d'élève) qui est un Utilisateur
 
-class Client(Person):
+class Client(Utilisateur):
 
-    class meta:
-        verbose_name = "information client"
+    def __str__(self):
+        info = self.prenom + " " + self.nom
+        return info
 
+    # rechercher un Repetiteur
+    def rechercher(self, matiere, classe, ville, quartier):
+        pass
 
-# creation de la classe matiere
-
-class Matiere(models.Model):
-    intitule = models.CharField(max_length=20, verbose_name="matiere")
-
-
-# creation de la classe  Classe
-
-class Classe(models.Model):
-    niveau = models.CharField(max_length=15)
+    # consulter le profil d'un Repetiteur
+    def consulterProfil(self, repetiteur):
+        pass
 
 
-# creation de la classe Cours
+# creation de la classe Repetiteur qui est un Utilisateur
 
-class Cours(models.Model):
-    idclasse = models.ForeignKey(Classe, null=False, on_delete=models.CASCADE)
-    idmatiere = models.ForeignKey(Matiere, null=False, on_delete=models.CASCADE)
-    repetiteur = models.ManyToManyField(Repetiteur)
-    jour = models.CharField(max_length=8)
-    heure = models.TimeField(verbose_name="horaire")
+class Repetiteur(Utilisateur):
+    CIVILITE = (('Mr', 'Mr'),
+                ('Mme', 'Mme'))
+    civilite = models.CharField(max_length=200, null=True, choices=CIVILITE)
+    dateNais = models.DateField(null=True)
+    niveauEtude = models.CharField(max_length=200, null=True)
+    ville = models.CharField(max_length=200, null=True)
+    quartier = models.CharField(max_length=200, null=True)
+    photoProfil = models.ImageField()
+
+    # un Repetiteur donne plusieurs Cours
+    listCours = models.ManyToManyField(Cours)
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(args, kwargs)
+
+    def __str__(self):
+        info = self.civilite + " " + self.prenom + " " + self.nom
+        return info
+
+    # s'inscrire : redefinir la methode inscrire() de Utilisateur
+    def inscrire(self):
+        pass
+
+    # modifier son profil (deja inscrit)
+    def modifierProfil(self):
+        pass

@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -39,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # configuration de l'appli core
     'core',
+    # installation d'une appli pour les reseaux sociaux
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'findRepeater.urls'
@@ -64,12 +68,18 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'findRepeater.wsgi.application'
+
+# personnalisation de l'authentification d'un utilisateur
+#SOCIAL_AUTH_USER_MODEL = 'somepackage.models.CustomUser'
+
 
 
 # Database
@@ -123,3 +133,44 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# configuration des sauvegarde backend
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.open_id.OpenIdAuth',
+    #'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.twitter.TwitterOAuth',
+    'social_core.backends.google.GoogleOAuth',
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+
+
+LOGIN_REDIRECT_URL = ''
+
+
+
+# This will print email in Console.
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'alert-info',
+    messages.INFO: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+    messages.WARNING: 'alert-warning',
+    messages.ERROR: 'alert-danger',
+}
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = '1755103731345260'  # App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '7a0893cbd56317fa9bf0c9e0c1decadf'
+
+SOCIAL_AUTH_TWITTER_KEY = 'YOURTWITTERKEY'
+SOCIAL_AUTH_TWITTER_SECRET = 'YOURTWITTERSECRET'
+
+SOCIAL_AUTH_GOOGLE_KEY = 'YOURGOOGLEKEY'
+SOCIAL_AUTH_GOOGLE_SECRET = 'YOURGOOGLESECRET'
+

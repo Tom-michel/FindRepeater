@@ -1,4 +1,3 @@
-# Create your views here.
 from django.shortcuts import render
 
 
@@ -15,4 +14,5 @@ def parent(request):
 
 
 def connexio(request):
+
     return render(request, 'core/connexio.html')
