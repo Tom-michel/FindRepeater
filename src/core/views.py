@@ -1,3 +1,11 @@
 from django.shortcuts import render
+from django.http import HttpResponse
 
-# Create your views here.
+def index(request):
+    return render(request,'core/index.html')
+def inscription(request):
+    return render(request,'core/inscription.html')
+def parent(request):
+    return render(request, 'core/parent.html')
+def connexio(request):
+    return render(request, 'core/connexio.html')

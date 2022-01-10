@@ -32,6 +32,10 @@ class Cours(models.Model):
     # un Cours concerne une seule Classe
     classe = models.ForeignKey(Classe, null=True, on_delete=CASCADE)
 
+    def __str__(self):
+        info = self.matiere.intitule+" "+self.classe.niveau
+        return info
+
 # creation la classe Utilisateur
 
 class Utilisateur(models.Model):
