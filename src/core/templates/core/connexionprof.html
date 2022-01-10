@@ -1,0 +1,39 @@
+{% extends 'core/base.html' %}
+
+{% block title %} Connexion Professeur{% endblock %}
+
+{% block content %}
+<section class="py-5">
+  <div class="container">
+   <div class="row">
+    <div class=" col-lg-6 offset-3 border border-light rounded bg-white shadow-lg">
+      <form action="#" method="post">
+       <div class="py-2">
+         <h1 class="fw-fold text-center">Connexion</h1>
+       </div>
+       <hr
+           class="align-content-center mx-auto"
+           style="width: 120px; height: 6px; background:linear-gradient(to right, orangered, yellow);"
+           />
+         {% csrf_token %}
+       
+       <div>
+         <input class="form-control" type="text" name="email" placeholder="Email" required="">
+       </div><br>
+       <em class="text-danger">{{form.email.errors}}</em>
+       
+       <div>
+         <input class="form-control" type="password" name="password" placeholder="Mot de passe" required="">
+       </div>
+       <em class="text-danger">{{form.password.errors}}</em>
+       
+       <div class="d-flex justify-content-center my-5">
+         <input class="border border-white rounded-pill py-2 px-2 text-white" type="submit" value="connexion" style="background-color: orange;">
+       </div>
+      </form>
+      <p>Vous n'avez pas de compte? <a href="{% url 'inscriptionprof' %}"> S'inscrire!</a></p>
+    </div>
+   </div>
+ </div>
+</section>
+{% endblock%}

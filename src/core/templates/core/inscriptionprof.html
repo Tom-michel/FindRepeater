@@ -1,0 +1,73 @@
+{% extends "core/base.html"%}
+
+{% load static %}
+
+{% block title %} Inscription Prof {% endblock %}
+
+{% block content %} 
+
+   <section class="py-5">
+    <div class="py-5">
+        
+  
+    <div class="container border border-light rounded bg-white shadow-lg">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="pb-lg-4 pt-lg-3">
+                    <h1 class="text-center">Création de compte</h1>
+                    <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing, elit</p>
+                </div>
+               <form method="POST" action="#" class="px-3">
+                 {% csrf_token %}
+                <div class="col-auto my-1">
+                    <label class="mr-sm-2" for="inlineFormCustomSelect">Civilité</label>
+                  <select class="custom-select mr-sm-2" id="sexe">
+                    <option></option>
+                </select>
+            </div>
+                  <div class="form-group">
+                    <label for="nom">Nom</label>
+                    <input type="text" class="form-control" id="nom" placeholder="Entrez votre nom">
+                </div>
+                <div class="form-group">
+                    <label for="prenom">Prénom</label>
+                    <input type="text" class="form-control" id="prenom" placeholder="Entrez votre Prénom">
+                </div>
+                <div class="form-group">
+                    <label for="prenom">Télephone</label>
+                    <input type="text" class="form-control" id="telephone" placeholder="Entrez votre Prénom">
+                </div>
+                <div class="form-group">
+                    <em class="text-danger">{{form.email.errors}}</em>
+                    <label for="prenom">Email</label>
+                    <input type="text" class="form-control" id="email" placeholder="Entrez votre Email">
+                </div>
+                <div class="form-group">
+                    <em class="text-danger">{{form.password.errors}}</em>
+                    <label for="prenom">Mot de passe</label>
+                    <input type="password" class="form-control" id="password" placeholder="Entrez votre mot de passe">
+                </div>
+                <div class="form-group">
+                    <em class="text-danger">{{form.password.errors}}</em>
+                    <label for="prenom">Confirmez votre mot de passe</label>
+                    <input type="password" class="form-control" id="password" placeholder="Entrez votre mot de passe">
+                </div>
+
+                 <div class="d-flex justify-content-center my-5">
+         <input class="border border-white rounded-pill py-2 px-3 text-white" type="submit" value="connexion" style="background-color: orange;">
+       </div>
+      <p>Vous avez déja un compte? <a href="{% url 'connexionprof' %}"> Se connecter!</a></p>
+            </form> 
+        </div>
+        <div class="col-lg-6">
+            <div class="signup-image">
+              <figure><img class="img-fluid" src="{% static 'core/images/signup-image.jpg' %}" alt="sing up image"></figure>
+              <a href="#" class="signup-image-link"></a>
+          </div>
+      </div>
+  </div>
+</div>
+  </div>
+</section>
+
+{% endblock %}
