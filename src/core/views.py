@@ -9,3 +9,5 @@ def parent(request):
     return render(request, 'core/parent.html')
 def connexio(request):
     return render(request, 'core/connexio.html')
+def test(request):
+    return render(request, 'core/test.html')
