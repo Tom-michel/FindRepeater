@@ -5,5 +5,85 @@
 {% block title %}Trouver un professeur{% endblock %}
 
 {% block content %} 
+<section class="py-5">
+    <div class="container">
+     <div class="row">
+      <div class=" col-lg-6 offset-3 border border-light rounded bg-white shadow-lg">
+        <div class="py-2">
+            <h1 class="fw-fold text-center">Recherche d'un prof </h1>
+          </div>
+          <hr
+             class="align-content-center mx-auto"
+             style="width: 120px; height: 6px; background:linear-gradient(to right, orangered, yellow);"
+             />
+        <form action="#" method="post">
+           {% csrf_token %}
+           <div class="form-row">
+             <h4>Types du cours:</h4>
+            
+            
+            <div class="form-group">
+              <label for="matiere">Matière</label>
+              <select id="matiere" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="classe">Classe</label>
+              <select id="classe" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="niveau">Niveau</label>
+              <select id="niveau" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="moyenne">Moyenne</label>
+              <input type="text" class="form-control" id="moyenne">
+            </div>
+          </div>
+          <h4> Horraire du cours:</h4>
+          <div class="form-group">
+            
 
+              <label for="jour">Jour</label>
+              <select id="jour" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="heure">Heure</label>
+              <select id="heure" class="form-control">
+                <option selected>Choose...</option>
+                <option>...</option>
+              </select>
+              <div class="form-group">
+                <label for="durée">Durée</label>
+                <select id="durée" class="form-control">
+                  <option selected>Choose...</option>
+                  <option>...</option>
+                </select><br>
+              <button type="submit" class="btn btn-primary">Rechercher</button>
+            </div>
+            
+
+            
+          </div>
+  
+                    </form>
+                
+                </div>
+
+        </div>
+    </div>
+
+</section>
+  
 {% endblock %}
