@@ -2,32 +2,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="/static/core/css/bootstrap.min.css">
-
- 
   <title> {% block title %}  {% endblock %} </title>
 </head>
 
-<body>
+<body class="bg-light">
 	  {% block header %} 
 
      <!--  ============== Navbar Start ========================-->
 
-     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top py-3" >
-          <a class="navbar-brand" href="#page-top">FindRepeater</a>
-          <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-          <div class="collapse navbar-collapse" id="navbarResponsive">
-              <ul class="navbar-nav ms-auto my-2 my-lg-0">
-                  <li class="nav-item"><a class="nav-link" href="#about">A propos</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
-                  <li class="nav-item"><a class="nav-link" href="connexion">connexion</a></li>
-                  <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-              </ul>
-          </div>
-  </nav>
-
+     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white py-2">
+        <a class="navbar-brand text-dark mx-2" href="#page-top">FindRepeater</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+        <div class="ms-auto"></div>
+        <div class="collapse navbar-collapse mx-2">
+            <ul class="navbar-nav ms-auto my-2 my-lg-0 text-white ">
+                <li class="nav-item"><a class="nav-link" href=" {% url 'inscriptionprof' %} ">Devenir prof</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'recherche' %}">Rechercher un prof</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'connexionClient' %}">Connexion</a></li>
+            </ul>
+        </div>
+    </nav>
      <!--  ============== Navbar End ========================-->
 
 
@@ -40,10 +37,14 @@
 
     {% block footer %}  
 
-    <footer class="bg-light py-5">
-      <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2021 - FindRepeater</div></div>
-  </footer>
+
     {% endblock %}
+
+    <!-- JS -->
+    <!-- Bootstrap core JS-->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        
+
    
 </body>
 </html>
