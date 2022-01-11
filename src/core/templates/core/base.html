@@ -19,11 +19,37 @@
         <div class="ms-auto"></div>
         <div class="collapse navbar-collapse mx-2">
             <ul class="navbar-nav ms-auto my-2 my-lg-0 text-white ">
-                <li class="nav-item"><a class="nav-link" href=" {% url 'inscriptionprof' %} ">Devenir prof</a></li>
+                <li class="nav-item"><a class="nav-link" href=" {% url 'inscriptionprof' %}">Devenir prof</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'connexionClient' %}">Rechercher un prof</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'connexionprof' %}">Connexion</a></li>
+                
+                {% if user.is_authenticated %}
+                    <li class="nav-item"><a class="nav-link" href="{% url 'user_logout' %}">Logout</a></li>
+                {% endif %}
+                <li class="nav-item">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                            S'enregistrer
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="{% url 'inscriptionClient' %}">Élève</a></li>
+                            <li><a class="dropdown-item" href="{% url 'inscriptionClient' %}">Parent d'élève</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'inscriptionprof' %}">Répétiteur</a></li>
+                        </ul>
+                    </div>
+                
+                
+                    
+                </li>
+
             </ul>
         </div>
+
+        <!-- Example single danger button -->
+
+
+
     </nav>
      <!--  ============== Navbar End ========================-->
 

@@ -8,6 +8,7 @@ urlpatterns = [
     path('inscriptionClient', views.inscriptionClient,name='inscriptionClient'),
     path('connexionClient', views.connexionClient,name='connexionClient'),
     path('connexionprof', views.connexionprof,name='connexionprof'),
+    path('user_logout', views.user_logout,name='user_logout'),
     path('recherche', views.recherche,name='recherche'),
 
 ]

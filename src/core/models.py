@@ -1,5 +1,6 @@
 from django.db import models
 from django.db.models.deletion import CASCADE, SET_NULL
+from django.contrib.auth.models import User
 import os
 
 # Create your models here.
@@ -36,17 +37,31 @@ class Cours(models.Model):
         info = self.matiere.intitule+" "+self.classe.niveau
         return info
 
+
 # creation la classe Utilisateur
 
+def renommer_image(instance, filename):
+    upload_to = 'image/'
+    ext = filename.split('.')[-1]
+    if instance.user.username:
+        filename = "photo_profile/{}.{}".format(instance.user.username, ext)
+        return os.path.join(upload_to, filename)
+
+
 class Utilisateur(models.Model):
-    CIVILITE = (('Mr','Mr'),
-                ('Mme','Mme'))
-    civilité = models.CharField(max_length=200, null=True, choices=CIVILITE)
-    nom = models.CharField(max_length=200, null=True)
-    prenom = models.CharField(max_length=200, null=True)
+    Monsieur = 'Monsieur'
+    Mademoiselle = 'Mademoiselle'
+    Madame = 'Madame'
+    CIVILITE = [
+        (Monsieur,'Monsieur'),(Mademoiselle,'Mademoiselle'),(Madame,'Madame')
+    ]
+    civilité = models.CharField(max_length=200, null=True, choices=CIVILITE, default=Monsieur)
+    
+    # User possede déja : username, email, first_name, last_name, (password 1 et 2)
+    user = models.OneToOneField(User, on_delete=CASCADE)
+    
     telephone = models.CharField(max_length=200, null=True)
-    email = models.EmailField(max_length=200, null=True)
-    password = models.CharField(max_length=200, null=True)
+    photoProfil = models.ImageField(upload_to=renommer_image) 
 
     # s'inscrire sur la platefoerme
     def inscrire():
@@ -62,9 +77,12 @@ class Utilisateur(models.Model):
 # creation de la classe Client(élève/parent d'élève) qui est un Utilisateur
 
 class Client(Utilisateur):
-
+    TYPE_USER = [
+        ('Élève','Élève'),('Parent','Parent')
+    ]
+    type_user = models.CharField(max_length=200, null=True, choices=TYPE_USER, default='Élève')
     def __str__(self):
-        info = self.civilité+" "+self.prenom+" "+self.nom
+        info = self.civilité+" "+self.user.username
         return info
     
     # rechercher un Repetiteur
@@ -79,11 +97,12 @@ class Client(Utilisateur):
 # creation de la classe Repetiteur qui est un Utilisateur
 
 class Repetiteur(Utilisateur):
+    TYPE_USER = [('Enseignant','Enseignant')]
+    type_user = models.CharField(max_length=200, null=True, choices=TYPE_USER, default='Enseignant')
     dateNais = models.DateField(null=True)
     niveauEtude = models.CharField(max_length=200, null=True)
     ville = models.CharField(max_length=200, null=True)
-    quartier = models.CharField(max_length=200, null=True)
-    photoProfil = models.ImageField()  
+    quartier = models.CharField(max_length=200, null=True) 
 
     # un Reptiteur donne plusieurs Cours
     listCours = models.ManyToManyField(Cours)
