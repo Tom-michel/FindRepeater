@@ -20,4 +20,8 @@ def recherche(request):
     return render(request, 'core/recherche.html')
 def erreur404(request,exception):
     return render(request, 'core/erreur404.html')
+def pageProfiles(request):
+    return render(request, 'core/pageProfiles.html')
+def profileRéglage(request):
+    return render(request, 'core/profileRéglage.html')
 

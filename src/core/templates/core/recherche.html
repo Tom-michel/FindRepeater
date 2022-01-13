@@ -6,84 +6,79 @@
 
 {% block content %} 
 <section class="py-5">
+  <div class="py-lg-5">
     <div class="container">
-     <div class="row">
-      <div class=" col-lg-6 offset-3 border border-light rounded bg-white shadow-lg">
-        <div class="py-2">
-            <h1 class="fw-fold text-center">Recherche d'un prof </h1>
-          </div>
-          <hr
-             class="align-content-center mx-auto"
-             style="width: 120px; height: 6px; background:linear-gradient(to right, orangered, yellow);"
-             />
-        <form action="#" method="post">
-           {% csrf_token %}
-           <div class="form-row">
-             <h4>Types du cours:</h4>
-            
-            
-            <div class="form-group">
-              <label for="matiere">Matière</label>
-              <select id="matiere" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="classe">Classe</label>
-              <select id="classe" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="niveau">Niveau</label>
-              <select id="niveau" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="moyenne">Moyenne</label>
-              <input type="text" class="form-control" id="moyenne">
-            </div>
-          </div>
-          <h4> Horraire du cours:</h4>
-          <div class="form-group">
-            
+   <div class="row">
+    <div class=" col-lg-6 offset-3 border border-light rounded bg-white shadow-lg">
+      <form action="#" method="post" class="px-lg-3">
+       <div class="py-2">
+         <h1 class="fw-fold text-center">Recherche un prof</h1>
+       </div>
+       <hr
+           class="align-content-center mx-auto"
+           style="width: 120px; height: 6px; background:linear-gradient(to right, orangered, yellow);"
+           />
+         {% csrf_token %}
+       
+       <div class="py-lg-2">
+         <h4>Types de cours :</h4><br>
+         <label for="matiere">Matières</label>
+         <select id="matiere" class="form-control">
+           <option selected>Choose...</option>
+           <option>...</option>
+         </select>
+       </div>
+       
+       <div class="py-lg-2">
+        <label for="niveau">Niveau</label>
+        <select id="niveau" class="form-control">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+       </div>      
+       <div class="py-lg-2">
+        <label for="ville">Ville</label>
+        <select id="classe" class="form-control">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+       </div>  
+       <div class="py-lg-2">
+        <label for="moyenne">Moyenne</label>
+        <input class="form-control" type="text" name="moyenne" id="moyenne" placeholder="moyenne de l'élève actuellement" required="">
+      </div><br>
+      <h4>Horraire du cours :</h4><br>
+      <div class="py-lg-2">
+        <label for="jour">Jour</label>
+        <select id="jour" class="form-control">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+       </div>  
+       <div class="py-lg-2">
+        <label for="heure">Heure</label>
+        <select id="heure" class="form-control">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+       </div>  
+       <div class="py-lg-2">
+        <label for="durée">Durée</label>
+        <select id="durée" class="form-control">
+          <option selected>Choose...</option>
+          <option>...</option>
+        </select>
+       </div>  
 
-              <label for="jour">Jour</label>
-              <select id="jour" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="heure">Heure</label>
-              <select id="heure" class="form-control">
-                <option selected>Choose...</option>
-                <option>...</option>
-              </select>
-              <div class="form-group">
-                <label for="durée">Durée</label>
-                <select id="durée" class="form-control">
-                  <option selected>Choose...</option>
-                  <option>...</option>
-                </select><br>
-              <button type="submit" class="btn btn-primary">Rechercher</button>
-            </div>
-            
 
-            
-          </div>
-  
-                    </form>
-                
-                </div>
-
-        </div>
+ 
+       <div class="d-flex justify-content-center my-5">
+         <input class="border border-white rounded-pill py-2 px-4 text-white" type="submit" value="rechercher" style="background-color: orange;">
+       </div>
+      </form>
     </div>
-
+   </div>
+ </div>
+  </div>
 </section>
-  
 {% endblock %}

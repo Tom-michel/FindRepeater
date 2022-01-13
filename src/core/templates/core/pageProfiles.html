@@ -1,0 +1,249 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %} Connexion Professeur{% endblock %}
+
+{% block content %}
+
+    <style>
+
+
+
+body{
+
+font-family: sans-serif;
+
+
+
+}
+.box-profile{
+	user-select: none;
+	margin: 50px auto;
+	background:#231e39 ;
+	color: #b3b8cd ;
+	border-radius: 15px;
+	width: 350px;
+	text-align: center;
+	box-shadow: 0 10px 20px -10px rgba(0,0,0,.75);
+    
+}
+.cover-photo{
+
+	background: url(static/core/img/2.JPG);
+	height: 160px;
+	width: 100%;
+	border-radius: 5px 5px 0 0;
+}
+.profile{
+	height: 120px;
+	width: 120px;
+	border-radius: 50%;
+	margin:  -175px;
+	border: 1px solid #1f1a32;
+	background: #292343;
+
+}
+.profile-name{
+	font-size: 25px;
+	font-weight: bold;
+}.age{
+
+	margin-top: 10px;
+	line-height: 16px;
+    font-size: 13px;
+
+}
+.ville{
+
+margin-top: 10px;
+line-height: 16px;
+font-size: 13px;
+
+}
+button{
+margin: 10px 0 40px 0;
+
+
+}
+.msg-btn, .follow-btn{
+	background: orange ;
+	border: 1px solid orange;
+	padding: 10px 25px;
+	color: #231e39;
+	border-radius: 3px;
+	font-family: sans-serif;
+	cursor: pointer;
+	
+
+
+}
+.follow-btn{
+	margin-left: 10px;
+	background: transparent;
+	color: orange;
+
+
+}
+.msg-btn{
+	margin-left: 10px;
+	background: transparent;
+	color: orange;
+
+
+}
+.follow-btn:hover{
+
+	color: #ffffff;
+	background: orange;
+	transition: .5s;
+}
+.msg-btn:hover{
+
+	color: #ffffff;
+	background: orange;
+	transition: .5s;
+}
+.box-profile i{
+	padding-left: 20px;
+	font-size: 20px;
+	margin-bottom: 20px;
+	cursor: pointer;
+	transition: .5s;
+}
+.box-profile i:hover{
+color: orange;
+
+}
+.team-container
+{
+    width:100%;
+    height: auto;
+
+}
+
+    </style>
+<br><br>
+<div class="container ">
+    <div class="team_container">
+        <div class="py-2">
+            <h1 class="fw-fold text-center">Notre équipes de professeurs</h1>
+            <hr
+           class="align-content-center mx-auto"
+           style="width: 120px; height: 6px; background:linear-gradient(to right, orangered, yellow);"
+           />
+          </div>
+    <div class="row">
+        <div class="col-md-4"><br><br><br><br>    <div class="box-profile">
+            <div class="cover-photo">
+                <img src="{% static 'core/img/profile.jpg' %}" class="profile" alt="">
+            </div>
+            <div class="profile-name">Mr nom prenom</div>
+            <p class="age"> Age : 20 ans</p>
+            <p class="ville">Ville, quartier</p>
+
+            <button class="msg-btn">Contacter</button>
+            <button class="follow-btn">profile </button>
+            <div>
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-youtube"></i>
+                <i class="fab fa-twitter"></i>
+    
+            </div>
+        </div></div>
+        <div class="col"><br><br><br><br>     <div class="box-profile">
+            <div class="cover-photo">
+                <img src="{% static 'core/img/profile.jpg' %}" class="profile" alt="">
+            </div>
+            <div class="profile-name">Mr nom prenom</div>
+            <p class="age">Age : 20 ans</p>
+            <p class="ville">Ville, quartier</p>
+
+            <button class="msg-btn">Contacter</button>
+            <button class="follow-btn">profile </button>
+            <div>
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-youtube"></i>
+                <i class="fab fa-twitter"></i>
+    
+            </div>
+        </div></div>
+        <div class="col">  <br><br><br><br>   <div class="box-profile">
+            <div class="cover-photo">
+                <img src="{% static 'core/img/profile.jpg' %}" class="profile" alt="">
+            </div>
+            <div class="profile-name">Mr nom prenom</div>
+            <p class="age"> Age : 20 ans</p>
+            <p class="ville">Ville, quartier</p>
+
+            <button class="msg-btn">Contacter</button>
+            <button class="follow-btn">profile </button>
+            <div>
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-youtube"></i>
+                <i class="fab fa-twitter"></i>
+    
+            </div>
+        </div></div>
+        <div class="col">    <div class="box-profile">
+            <div class="cover-photo">
+                <img src="{% static 'core/img/profile.jpg' %}" class="profile" alt="">
+            </div>
+            <div class="profile-name">Mr nom prenom</div>
+            <p class="age">Age : 20 ans</p>
+            <p class="ville">Ville, quartier</p>
+
+            <button class="msg-btn">Contacter</button>
+            <button class="follow-btn">profile </button>
+            <div>
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-youtube"></i>
+                <i class="fab fa-twitter"></i>
+    
+            </div>
+        </div></div>
+        <div class="col">    <div class="box-profile">
+            <div class="cover-photo">
+                <img src="{% static 'core/img/profile.jpg' %}" class="profile" alt="">
+            </div>
+            <div class="profile-name">Mr nom prenom</div>
+            <p class="age">Age : 20 ans</p>
+            <p class="ville">Ville, quartier</p>
+
+            <button class="msg-btn">Contacter</button>
+            <button class="follow-btn">profile </button>
+            <div>
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-youtube"></i>
+                <i class="fab fa-twitter"></i>
+    
+            </div>
+        </div></div>
+        <div class="col">    <div class="box-profile">
+            <div class="cover-photo">
+                <img src="{% static 'core/img/profile.jpg' %}" class="profile" alt="">
+            </div>
+            <div class="profile-name">Mr nom prenom</div>
+            <p class="age"> Age : 20 ans</p>
+            <p class="ville">Ville, quartier</p>
+            <button class="msg-btn">Contacter</button>
+            <button class="follow-btn">profile </button>
+            <div>
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-youtube"></i>
+                <i class="fab fa-twitter"></i>
+    
+            </div>
+        </div></div>
+    </div>
+</div>
+
+
+
+
+{% endblock %}

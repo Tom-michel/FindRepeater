@@ -11,5 +11,9 @@ urlpatterns = [
     path('connexionprof', views.connexionprof,name='connexionprof'),
     path('recherche', views.recherche,name='recherche'),
     path('erreur404', views.erreur404,name='erreur404'),
+    path('pageProfiles', views.pageProfiles,name='pageProfiles'),
+    path('profileRéglage', views.profileRéglage,name='profileRéglage'),
+
+
 
 ]
