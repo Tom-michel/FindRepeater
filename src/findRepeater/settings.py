@@ -42,7 +42,36 @@ INSTALLED_APPS = [
     'core',
     # installation d'une appli pour les reseaux sociaux
     'social_django',
+
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    'allauth.socialaccount.providers.google',
+    #'allauth.socialaccount.providers.facebook',
+    #'allauth.socialaccount.providers.twitter',
+    #'allauth.socialaccount.providers.yahoo',
+
+    'crispy_forms',
 ]
+
+
+SITE_ID = 1
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'SCOPE': [
+            'profile',
+            'email',
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+        }
+    }
+}
+
+#AUTH_USER_MODEL = 'core.Client'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -70,6 +99,7 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
+                'django.template.context_processors.request',
             ],
         },
     },
@@ -140,9 +170,10 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.open_id.OpenIdAuth',
     #'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.google.GoogleOAuth',
+    'social_core.backends.google.GoogleOAuth2',
     'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 )
 
 
@@ -171,6 +202,6 @@ SOCIAL_AUTH_FACEBOOK_SECRET = '7a0893cbd56317fa9bf0c9e0c1decadf'
 SOCIAL_AUTH_TWITTER_KEY = 'YOURTWITTERKEY'
 SOCIAL_AUTH_TWITTER_SECRET = 'YOURTWITTERSECRET'
 
-SOCIAL_AUTH_GOOGLE_KEY = 'YOURGOOGLEKEY'
-SOCIAL_AUTH_GOOGLE_SECRET = 'YOURGOOGLESECRET'
 
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
