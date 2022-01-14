@@ -12,29 +12,33 @@
        <div class="py-2">
          <h1 class="fw-fold text-center">Connexion</h1>
        </div>
-       <hr
-           class="align-content-center mx-auto"
-           style="width: 120px; height: 6px; background:linear-gradient(to right, orangered, yellow);"
-           />
+       <hr class="align-content-center mx-auto"
+       style="width: 120px; height: 6px; background:linear-gradient(to right, orangered, yellow);">
          {% csrf_token %}
        
+       {% if user.is_authenticated %}
+            <p class="text-center text-success">vous êtes déja connecté en tant que <b>{{request.user.username}}</b></p>
+       {% endif %}
        <div class="py-lg-2">
-         {% comment %} <em class="text-danger">{{form.email.errors}}</em> {% endcomment %}
          <label for="username">Nom d'utilisateur</label>
          <input class="form-control" type="text" name="username" id="username" placeholder="votre nom d'utilisateur" required="">
        </div>
        
        <div class="py-lg-3">
-        {% comment %} <em class="text-danger">{{form.password.errors}}</em> {% endcomment %}
          <label for="password">Mot de passe</label>
          <input class="form-control" type="password" name="password" id="password" placeholder="votre mot de passe" required="">
-       </div>  
-       
-       <div class="d-flex justify-content-center my-5">
-         <input class="border border-white rounded-pill py-2 px-4 text-white" type="submit" value="connexion" style="background-color: orange;">
        </div>
+       <div class="d-flex justify-content-center my-5">
+          {% if not user.is_authenticated %}
+            <input class="border border-white rounded-pill py-2 px-4 text-black" type="submit" value="connexion" style="background-color: orange;">
+          {% endif %}
+        </div>
       </form>
-      <p>Vous n'avez pas de compte? <a href="{% url 'inscriptionClient' %}"> S'inscrire!</a></p>
+      {% for message in messages %}
+        <p class="text-center text-danger">votre <b>Nom d'utilisateur</b> ou votre <b>Mot de passe</b> est incorrect, {{message}}</p>
+      {% endfor %}
+
+      <p class="text-center">Vous n'avez pas de compte ? <a href="{% url 'inscriptionClient' %}">S'inscrire</a></p>
     </div>
    </div>
  </div>

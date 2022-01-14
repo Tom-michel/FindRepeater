@@ -1,6 +1,6 @@
 {% extends 'core/base.html' %}
 
-{% block title %} Connexion Professeur{% endblock %}
+{% block title %} Connexion Client {% endblock %}
 
 {% block content %}
 <section class="py-5">
@@ -8,32 +8,41 @@
     <div class="container">
    <div class="row">
     <div class=" col-lg-6 offset-3 border border-light rounded bg-white shadow-lg">
-      <form action="#" method="post" class="px-lg-3">
+      <form action="#" method="post">
        <div class="py-2">
          <h1 class="fw-fold text-center">Connexion</h1>
        </div>
-       <hr
-           class="align-content-center mx-auto"
-           style="width: 120px; height: 6px; background:linear-gradient(to right, orangered, yellow);"
-           />
+       <hr class="align-content-center mx-auto"
+       style="width: 120px; height: 6px; background:linear-gradient(to right, orangered, yellow);">
+       
          {% csrf_token %}
        
+       {% if user.is_authenticated %}
+            <p class="text-center text-success">vous êtes déja connecté en tant que <b>{{request.user.username}}</b></p>
+       {% endif %}
+       {% for message in messages %}
+          <p class="text-center text-danger">votre <b>Nom d'utilisateur</b> ou votre <b>Mot de passe</b> est incorrect, {{message}}</p>
+       {% endfor %}
        <div class="py-lg-2">
-         <em class="text-danger">{{form.email.errors}}</em>
-         <label for="email">Adesse mail</label>
-         <input class="form-control" type="text" name="email" id="email" placeholder="Email" required="">
+         {% comment %} <em class="text-danger">{{form.email.errors}}</em> {% endcomment %}
+         <label for="username">Nom d'utilisateur</label>
+         <input class="form-control" type="text" name="username" id="username" placeholder="votre nom d'utilisateur" required="">
        </div>
        
-       <div class="py-lg-2">
-        <em class="text-danger">{{form.password.errors}}</em>
+       <div class="py-lg-3">
          <label for="password">Mot de passe</label>
-         <input class="form-control" type="password" name="password" id="password" placeholder="Mot de passe" required="">
-       </div>       
-       <div class="d-flex justify-content-center my-5">
-         <input class="border border-white rounded-pill py-2 px-4 text-white" type="submit" value="connexion" style="background-color: orange;">
+         <input class="form-control" type="password" name="password" id="password" placeholder="votre mot de passe" required="">
        </div>
+       
+        <div class="d-flex justify-content-center my-5">
+          {% if not user.is_authenticated %}
+            <input class="border border-white rounded-pill py-2 px-4 text-black" type="submit" value="connexion" style="background-color: orange;">
+          {% endif %}
+        </div>
+       
       </form>
-      <p>Vous n'avez pas de compte? <a href="{% url 'inscriptionprof' %}"> S'inscrire!</a></p>
+
+      <p class="text-center">Vous n'avez pas de compte ? <a href="{% url 'inscriptionprof' %}">S'inscrire</a></p>
     </div>
    </div>
  </div>
