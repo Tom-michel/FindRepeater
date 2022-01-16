@@ -1,6 +1,3 @@
-* {
-  background-color: #1a252f;
-}
 body {
     font-family: "Open Sans", sans-serif;
   }
@@ -155,7 +152,7 @@ body {
   }
   .cover-photo{
   
-      background: url(2.JG);
+      background: url('../img/cover_photo.jpg');
       height: 160px;
       width: 100%;
       border-radius: 5px 5px 0 0;

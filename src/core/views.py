@@ -13,6 +13,12 @@ def index(request):
 def profil(request):
     return render(request,'core/pageProfiles.html')
 
+def profilReg(request):
+    return render(request,'core/profileReglage.html')
+
+def rech(request):
+    return render(request,'core/recherche2.html')
+
 
 # afficher la liste des utilisateurs
 
@@ -45,7 +51,7 @@ def recherche(request):
         
         content = {'listCours':listCours}
         # return HttpResponseRedirect('../../findrepeaper/resultatRecherche')
-        return render(request, 'core/resultatRecherche.html', content)
+        return render(request, 'core/pageProfiles.html', content)
     else:
         matiereList = Matiere.objects.all()
         classeList = Classe.objects.all()
