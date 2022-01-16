@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Repetiteur, Client, Cours
+from .models import Classe, Matiere, Repetiteur, Client, Cours
 
 def index(request):
     return render(request,'core/index.html')
@@ -26,8 +26,9 @@ def list_rep(request):
 
 # recherche de répétiteurs
 
+@login_required(login_url='connexionClient')
 def recherche(request):
-    #recueperer les données du formulaire
+    #recuperer les données du formulaire
     if request.method == 'POST':
         matiere = request.POST.get('')
         clase = request.POST.get('')
@@ -48,32 +49,6 @@ def resultatRecherche(request):
 
     return render(request, 'core/resultatRecherche.html')
 
-
-# ajout d'un cours par l'enseignant
-
-def ajoutCours(request):
-    err = ''
-    coursList = Cours.objects.all()
-    if request.method == "POST":
-        cours_form = CoursForm(data=request.POST)
-        if cours_form.is_valid():
-            cours = cours_form.save()
-            cours.save()
-
-            coursList = Cours.objects.all()
-            return HttpResponseRedirect('ajoutCours')
-        else:
-            err = cours_form.errors
-    else:
-        cours_form = CoursForm()
-    content = {
-        'err':err,
-        'cours_form':cours_form,
-        'coursList':coursList,
-    }
-    return render(request,'core/ajoutCours.html', content)
-
-    #return render(request, 'core/ajoutCours.html')
 
 
 # incription
@@ -154,18 +129,40 @@ def connexionClient(request):
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
         if user:
+            lisUSer = []
             if user.is_active:
-                login(request, user)
-                return HttpResponseRedirect('core/recherche.html')
+                clients = Client.objects.all()
+                userAct = username
+                for cli in clients:
+                    lisUSer.append(cli.user.username)
+                
+                if userAct in lisUSer:
+                    login(request, user)
+                    matiereList = Matiere.objects.all()
+                    classeList = Classe.objects.all()
+                    coursList = Cours.objects.all()
+
+                    content = {
+                        'matiereList':matiereList,
+                        'classeList':classeList,
+                        'coursList':coursList
+                    }
+                    return render(request,'core/recherche.html',content)
+                    # return HttpResponseRedirect('../../findrepeaper/recherche')
+                else:
+                    msg1 = messages.info(request, "cet utilisateur ne correspond pas à un compte Parent ou Élève !")
+                content1 = {
+                    'msg1':msg1
+                }
+                return render(request, 'core/connexionClient.html', content1)
             else:
                 return HttpResponse("L'utilisateur est désactivé")
         else:
-            msg = messages.info(request, "veuillez réessayer SVP !")
+            msg = messages.info(request, "votre Nom d'utilisateur ou votre Mot de passe est incorrect, veuillez réessayer SVP !")
             content = {
                 'msg':msg
             }
             return render(request, 'core/connexionClient.html', content)
-            # return HttpResponse("Votre nom d'utilisateur ou votre mot de passe est incorrect")
     else:
         return render(request, 'core/connexionClient.html')
 
@@ -213,22 +210,60 @@ def connexionprof(request):
         password = request.POST.get('password')
         user = authenticate(username=username, password=password)
         if user:
+            lisUSer = []
             if user.is_active:
-                login(request, user)
-                return HttpResponseRedirect('ajoutCours')
+                repetiteurs = Repetiteur.objects.all()
+                userAct = username
+                for rep in repetiteurs:
+                    lisUSer.append(rep.user.username)
+                
+                if userAct in lisUSer:
+                    login(request, user)
+                    return HttpResponseRedirect('ajoutCours')
+                else:
+                    msg1 = messages.info(request, "cet utilisateur ne correspond pas à un compte Enseignant !")
+                content1 = {
+                    'msg1':msg1
+                }
+                return render(request, 'core/connexionprof.html', content1)
             else:
                 return HttpResponse("L'utilisateur est désactivé")
         else:
-            msg = messages.info(request, "veuillez réessayer SVP !")
+            msg = messages.info(request, "votre Nom d'utilisateur ou votre Mot de passe est incorrect, veuillez réessayer SVP !")
             content = {
                 'msg':msg
             }
             return render(request, 'core/connexionprof.html', content)
-            # return HttpResponse("Votre nom d'utilisateur ou votre mot de passe est incorrect")
     else:
         return render(request, 'core/connexionprof.html')
 
 
+# ajout d'un cours par l'enseignant
+
+@login_required(login_url='inscriptionprof')
+def ajoutCours(request):
+    err = ''
+    coursList = Cours.objects.all()
+    if request.method == "POST":
+        cours_form = CoursForm(data=request.POST)
+        if cours_form.is_valid():
+            cours = cours_form.save()
+            cours.save()
+
+            coursList = Cours.objects.all()
+            return HttpResponseRedirect('ajoutCours')
+        else:
+            err = cours_form.errors
+    else:
+        cours_form = CoursForm()
+    content = {
+        'err':err,
+        'cours_form':cours_form,
+        'coursList':coursList,
+    }
+    return render(request,'core/ajoutCours.html', content)
+
+    #return render(request, 'core/ajoutCours.html')
 
 # fonction permettant de se déconnecter
 
