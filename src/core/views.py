@@ -1,3 +1,4 @@
+from typing import OrderedDict
 from django.shortcuts import render
 from .forms import UserForm, ClientForm, RepetiteurForm, CoursForm
 from django.http import HttpResponse, HttpResponseRedirect
@@ -8,6 +9,9 @@ from .models import Classe, Matiere, Repetiteur, Client, Cours
 
 def index(request):
     return render(request,'core/index.html')
+
+def profil(request):
+    return render(request,'core/pageProfiles.html')
 
 
 # afficher la liste des utilisateurs
@@ -30,18 +34,35 @@ def list_rep(request):
 def recherche(request):
     #recuperer les données du formulaire
     if request.method == 'POST':
-        matiere = request.POST.get('')
-        clase = request.POST.get('')
-        ville = request.POST.get('')
+        matiere = request.POST.get('matiere')
+        classe = request.POST.get('classe')
+        ville = request.POST.get('ville')
         listCours = []
         listCoursTemp = Cours.objects.all()
         for cours in listCoursTemp:
-            if cours.matiere==matiere and cours.classe==clase and cours.repetiteur.ville==ville:
+            if cours.matiere.intitule==matiere and cours.classe.niveau==classe and cours.repetiteur.ville==ville:
                 listCours.append(cours)
+        
         content = {'listCours':listCours}
+        # return HttpResponseRedirect('../../findrepeaper/resultatRecherche')
         return render(request, 'core/resultatRecherche.html', content)
     else:
-        return render(request, 'core/recherche.html')
+        matiereList = Matiere.objects.all()
+        classeList = Classe.objects.all()
+        coursList = Cours.objects.all()
+        villeList = []
+        for cours in coursList:
+            if cours.repetiteur.ville not in villeList:
+                villeList.append(cours.repetiteur.ville)
+        villeList.sort()
+        
+        content = {
+            'matiereList':matiereList,
+            'classeList':classeList,
+            'villeList':villeList
+        }
+        
+        return render(request, 'core/recherche.html', content)
 
 # afficher les répétiteurs après la recherche
 
@@ -138,17 +159,7 @@ def connexionClient(request):
                 
                 if userAct in lisUSer:
                     login(request, user)
-                    matiereList = Matiere.objects.all()
-                    classeList = Classe.objects.all()
-                    coursList = Cours.objects.all()
-
-                    content = {
-                        'matiereList':matiereList,
-                        'classeList':classeList,
-                        'coursList':coursList
-                    }
-                    return render(request,'core/recherche.html',content)
-                    # return HttpResponseRedirect('../../findrepeaper/recherche')
+                    return HttpResponseRedirect('../../findrepeaper/recherche')
                 else:
                     msg1 = messages.info(request, "cet utilisateur ne correspond pas à un compte Parent ou Élève !")
                 content1 = {
@@ -236,6 +247,26 @@ def connexionprof(request):
             return render(request, 'core/connexionprof.html', content)
     else:
         return render(request, 'core/connexionprof.html')
+
+
+#redirection la page recherche d'un enseignant lorsqu'un client est déja connecté
+
+def redirect(request):
+    matiereList = Matiere.objects.all()
+    classeList = Classe.objects.all()
+    coursList = Cours.objects.all()
+    villeList = []
+    for cours in coursList:
+        if cours.repetiteur.ville not in villeList:
+            villeList.append(cours.repetiteur.ville)
+    villeList.sort()
+
+    content = {
+        'matiereList':matiereList,
+        'classeList':classeList,
+        'villeList':villeList
+    }
+    return render(request,'core/recherche.html',content)
 
 
 # ajout d'un cours par l'enseignant

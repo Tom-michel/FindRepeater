@@ -4,8 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="{% static 'core/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+
+
+  {% comment %} <link rel="stylesheet" type="text/css" href="{% static 'core/css/bootstrap.min.css' %}"> {% endcomment %}
   <link rel="stylesheet" type="text/css" href="{% static 'core/css/style.css' %}">
+
+  
     
   <title> {% block title %}  {% endblock %} </title>
 </head>
@@ -22,11 +27,13 @@
         <div class="collapse navbar-collapse mx-2">
             <ul class="navbar-nav ms-auto my-2 my-lg-0 text-white ">
                 <li class="nav-item"><a class="nav-link" href="{% url 'inscriptionprof' %}">Devenir prof</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'recherche' %}">Rechercher un prof</a></li>
-                
+
                 {% if not user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'connexionprof' %}">Connexion</a></li>
                 {% endif %}
+
+                
+                    <li class="nav-item"><a class="nav-link" href="{% url 'recherche' %}">Rechercher un prof</a></li>
                 
                 {% if user.is_authenticated %}
                     <li class="nav-item"><a class="nav-link" href="{% url 'user_logout' %}">Logout</a></li>
