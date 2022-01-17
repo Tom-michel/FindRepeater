@@ -1,0 +1,62 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block title %} Profil enseignant {% endblock %}
+
+{% block content %}
+
+<section class="py-5">
+    <div class="py-5">
+        <div class="container border border-light rounded bg-white shadow-lg text-center">
+            <p><h1>Profil de mon enseignant</h1></p>
+        </div> 
+        
+    </div>
+    <div class="container">
+        <p>civilite : {{cours.repetiteur.civilité}}</p>
+        <p>nom : {{cours.repetiteur.user.last_name}}</p>
+        <p>prenom : {{cours.repetiteur.user.first_name}}</p>
+        <p>âge : {{cours.repetiteur.age}}</p>
+        <p>téléphone : {{cours.repetiteur.telephone}}</p>
+        <p>addresse mail : {{cours.repetiteur.user.email}}</p>
+        <p>niveau d'étude : {{cours.repetiteur.niveauEtude}}</p>
+        <p>ville : {{cours.repetiteur.ville}}</p>
+        <p>quartier : {{cours.repetiteur.quartier}}</p>
+
+        <div class="card card-body" style="background-color: #ebeff5;">
+            <span class="btn btn-primary  btn-sm btn-block">Votre liste de Cours</span>
+            <table class="table table-sm">
+                <tr>
+                    <th>Matière</th>
+                    <th>Classe</th>
+                    <th>Jour</th>
+                    <th>Début</th>
+                    <th>Durée</th>
+                    <th>Ville</th>
+                    <th>Mise à Jour</th>
+                    <th>Supprimer</th>
+                </tr>
+
+                {% for c in coursList %}
+                    {% if c.repetiteur.user.id == cours.repetiteur.user.id %}
+                        <tr>
+                            <th>{{c.matiere}}</th>
+                            <th>{{c.classe}}</th>
+                            <th>{{c.jour}}</th>
+                            <th>{{c.heure_début}}</th>
+                            <th>{{c.duree}}</th>
+                            <th>{{c.repetiteur.ville}}</th>
+                            <th><a href="">Mettre à Jour</a></th>
+                            <th><a href="">Supprimer</a></th>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+
+            </table>
+        </div>
+    </div>
+    
+
+</section>
+
+{% endblock %}

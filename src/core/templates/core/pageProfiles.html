@@ -7,10 +7,10 @@
 
 
 <br><br>
-<div class="container ">
+<div class="container py-5">
     <div class="team_container">
         <div class="py-2">
-            <h1 class="fw-fold text-center">Notre équipes de professeurs</h1>
+            <h1 class="fw-fold text-center">Notre équipe de professeurs</h1>
             <hr
            class="align-content-center mx-auto"
            style="width: 120px; height: 6px; background:linear-gradient(to right, orangered, yellow);"
@@ -18,10 +18,13 @@
         </div>
     <div class="row">
         {% if not listCours %}
-            <p>
-                Aucun enseignent trouvé, 
-                <a class="nav-link" href="{% url 'recherche' %}">Réessayer ?</a>
-            </p>
+            <div class="col-md-8 md-offset-2">
+                <p>
+                    Aucun enseignent trouvé, 
+                    <a class="nav-link" href="{% url 'recherche' %}">Réessayer ?</a>
+                </p>
+            </div>
+                
         {% endif %}
 
         {% if listCours %}
@@ -32,13 +35,24 @@
                             <img src="{% static 'core/img/profile.jpg' %}" class="profile" alt="">
                         </div>
                         <div class="profile-name">
-                            {{cours.repetiteur.civilité}} <br> {{cours.repetiteur.user.first_name}} {{cours.repetiteur.user.last_name}}
+                            <span style="font-size: 15px;">
+                                <a href="{% url 'consulterProfil' cours.id %}">{{cours.id}}</a> 
+                                {{cours.repetiteur.civilité}}
+                            </span><br>
+                            {{cours.repetiteur.user.first_name}} {{cours.repetiteur.user.last_name}}
                         </div>
-                        <p class="age"> Age : {{cours.repetiteur.age}} ans</p>
-                        <p class="ville">{{cours.repetiteur.ville}}, {{cours.repetiteur.quartier}}</p>
+                        <p class="age">
+                            A {{cours.repetiteur.age}} ans, vit à 
+                            <span style="font-size: 18px; color: orange;">{{cours.repetiteur.ville}}, {{cours.repetiteur.quartier}}</span> 
+                        </p>
+                        <p>Enseigne en 
+                            {% for cour in listC %}
+                                {{cour}}, 
+                            {% endfor %}
+                        </p>
 
-                        <button class="msg-btn">Contacter</button>
-                        <button class="follow-btn">profile </button>
+                        <!-- <button class="msg-btn">Contacter</button> -->
+                        <button class="follow-btn">Voir profil </button>
                         <div>
                             <i class="fab fa-facebook-f"></i>
                             <i class="fab fa-instagram"></i>

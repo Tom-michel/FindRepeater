@@ -8,10 +8,16 @@ from django.contrib import messages
 from .models import Classe, Matiere, Repetiteur, Client, Cours
 
 def index(request):
-    return render(request,'core/index.html')
 
-def profil(request):
-    return render(request,'core/pageProfiles.html')
+    listR = Repetiteur.objects.all()
+    listCli = Client.objects.all()
+    listRep = []
+    for rep in listR:
+        listRep.append(rep.user.username)
+    content = {'listRep':listRep}
+    return render(request,'core/index.html', content)
+
+
 
 def profilReg(request):
     return render(request,'core/profileReglage.html')
@@ -44,12 +50,23 @@ def recherche(request):
         classe = request.POST.get('classe')
         ville = request.POST.get('ville')
         listCours = []
+        listCoursEnseigne = []
         listCoursTemp = Cours.objects.all()
         for cours in listCoursTemp:
             if cours.matiere.intitule==matiere and cours.classe.niveau==classe and cours.repetiteur.ville==ville:
                 listCours.append(cours)
+                for c in Cours.objects.all():
+                    if cours.repetiteur.user.username == c.repetiteur.user.username:
+                        listCoursEnseigne.append(c.matiere.intitule)
         
-        content = {'listCours':listCours}
+        # retirer les doublons
+        listC = []
+        for cour in listCoursEnseigne:
+            if cour not in listC:
+                listC.append(cour)
+        listC.sort()
+        
+        content = {'listCours':listCours, 'listC':listC}
         # return HttpResponseRedirect('../../findrepeaper/resultatRecherche')
         return render(request, 'core/pageProfiles.html', content)
     else:
@@ -57,6 +74,7 @@ def recherche(request):
         classeList = Classe.objects.all()
         coursList = Cours.objects.all()
         villeList = []
+        # liste des villes à proposer lors de la recherche
         for cours in coursList:
             if cours.repetiteur.ville not in villeList:
                 villeList.append(cours.repetiteur.ville)
@@ -70,16 +88,41 @@ def recherche(request):
         
         return render(request, 'core/recherche.html', content)
 
+# les enseignant correspondant aux critères de recherche
+
+def pageProfiles(request):
+
+    return render(request,'core/pageProfiles.html')
+
+
 # afficher les répétiteurs après la recherche
 
 def resultatRecherche(request):
-
     return render(request, 'core/resultatRecherche.html')
+
+
+# consulter le profil d'un enseignant après la recherche
+
+def consulterProfil(request, pk):
+    cours = Cours.objects.get(id=pk)
+    coursList = Cours.objects.all()
+    content = {'cours':cours, 'coursList':coursList}
+    return render(request,'core/profilEns.html', content)
+
+
+# la page où un enseignat peut visualiser/mofier son profil
+@login_required(login_url='connexionprof')
+def monProfil(request):
+    coursList = Cours.objects.all()
+    repList = Repetiteur.objects.all()
+
+    content = {'coursList':coursList, repList:repList}
+    return render(request, 'core/monProfil.html', content)
 
 
 
 # incription
-# def inscription(request, formUser, formUtil, path_fichier):
+#def inscription(request, formUser, formUtil, path_fichier):
     registered = False
     err1 = " "
     err2 = " "
@@ -97,7 +140,7 @@ def resultatRecherche(request):
         else:
             err1 = user_form.errors
             err2 = client_form.errors
-            # print(user_form.errors, client_form.errors)
+            print(user_form.errors, client_form.errors)
 
     else:
         user_form = UserForm()
