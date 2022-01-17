@@ -12,6 +12,11 @@ body {
   text-decoration: none;
 }
 
+.navbar button{
+  border-color: orange;
+  background-color: orange;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: "Nunito", sans-serif;
 }
@@ -97,4 +102,148 @@ h1, h2, h3, h4, h5, h6 {
 section {
   padding: 60px 0;
   overflow: hidden;
+}
+
+#banner{
+  background-color: orange;
+}
+
+
+.form {
+  background: #fff;
+  position: absolute;
+  width: 40rem;
+  box-shadow: 0.2rem 0.2rem 0.5rem rgba(51, 51, 51, 0.2);
+  display: none;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.form__btn {
+  background: orange;
+  outline: none;
+  border: none;
+  padding: 0.5rem 0.7rem;
+  width: 7rem;
+  margin: 1rem auto;
+  border-radius: 0.8rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  cursor: pointer;
+}
+.form--message-text {
+  width: 40rem;
+  background: #fff;
+  color: #444;
+  margin-top: 5rem;
+  padding: 2rem 1rem;
+  text-align: center;
+  font-size: 1.4rem;
+  box-shadow: 0.2rem 0.2rem 0.5rem rgba(51, 51, 51, 0.2);
+  animation: fadeIn 0.8s;
+  border-radius: 1rem;
+}
+
+.form-active {
+  z-index: 1000;
+  display: block;
+}
+.form-active-animate {
+  animation: moveRight 1s;
+}
+.form-inactive {
+  display: block;
+  animation: moveLeft 1s;
+}
+
+@keyframes moveRight {
+  0% {
+    transform: translateX(-27rem) scale(0.9);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0rem) scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes moveLeft {
+  0% {
+    transform: translateX(0rem) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(27rem) scale(0.9);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.services .icon-box {
+  padding: 60px 30px;
+  position: relative;
+  overflow: hidden;
+  background: #fff;
+  transition: all 0.3s ease-in-out;
+  border-radius: 8px;
+  z-index: 1;
+  text-align: center;
+}
+.services .icon-box::before {
+  content: "";
+  position: absolute;
+  background: #fdeff2;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  top: 100%;
+  transition: all 0.4s;
+  z-index: -1;
+}
+.services .icon-box:hover::before {
+  background: orange;
+  top: 0;
+  border-radius: 0px;
+}
+.services .icon {
+  margin-bottom: 15px;
+}
+.services .icon i {
+  font-size: 48px;
+  line-height: 1;
+  color: orange;
+  transition: all 0.3s ease-in-out;
+}
+.services .title {
+  font-weight: 700;
+  margin-bottom: 15px;
+  font-size: 18px;
+}
+.services .title a {
+  color: #111;
+}
+.services .description {
+  font-size: 15px;
+  line-height: 28px;
+  margin-bottom: 0;
+}
+.services .icon-box:hover .title a, .services .icon-box:hover .description {
+  color: #fff;
+}
+.services .icon-box:hover .icon i {
+  color: #fff;
+}
+
+.inscription{
+  border: 2px orange;
+  background-color: rgba(255, 165 ,0 , 0.7);
+  border-radius: 4px;
 }
