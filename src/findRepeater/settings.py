@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-i4d0%n#s@fo%i+6mr^ddvupk@s=!%5e1b2jh++*rezba&dse7&
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # configuration de l'appli core
     'core',
+
     # installation d'une appli pour les reseaux sociaux
     'social_django',
 
@@ -55,7 +56,6 @@ INSTALLED_APPS = [
 
     'crispy_forms',
 ]
-
 
 SITE_ID = 1
 
@@ -89,7 +89,7 @@ ROOT_URLCONF = 'findRepeater.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
