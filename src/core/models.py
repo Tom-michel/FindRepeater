@@ -3,6 +3,7 @@ from django.db.models.deletion import CASCADE, SET_NULL
 from django.contrib.auth.models import User
 import os
 
+
 # Create your models here.
 
 
@@ -13,6 +14,7 @@ class Classe(models.Model):
 
     def __str__(self):
         return self.niveau
+
 
 # creation de la classe Matiere
 
@@ -35,45 +37,52 @@ def renommer_image(instance, filename):
 
 class Utilisateur(models.Model):
     CIVILITE = [
-        ('Monsieur','Monsieur'),('Mademoiselle','Mademoiselle'),('Madame','Madame')
+        ('Monsieur', 'Monsieur'), ('Mademoiselle', 'Mademoiselle'), ('Madame', 'Madame')
     ]
-    civilité = models.CharField(max_length=200, null=True, choices=CIVILITE, default='Monsieur')
+    Langue = [
+        ('Francais', 'Francais'), ('Anglais', 'Anglais'), ('Billingue', 'Billingue')
+    ]
+    civilite = models.CharField(max_length=200, null=True, choices=CIVILITE, default='Monsieur')
+    langue = models.CharField(max_length=20, null=False, choices=Langue, default='Francais')
     age = models.IntegerField(null=True)
     # User possede déja : username, email, first_name, last_name, (password 1 et 2)
     user = models.OneToOneField(User, on_delete=CASCADE)
-    
+
+    nom = models.CharField(max_length=100, null=False)
+    prenom = models.CharField(max_length=100, null=False)
     telephone = models.CharField(max_length=200, null=True)
-    photoProfil = models.ImageField(upload_to=renommer_image, blank=True) 
+    photoProfil = models.ImageField(upload_to=renommer_image, blank=True)
 
     TYPE_USER = [
-        ('Élève','Élève'),('Parent','Parent'),('Enseignant','Enseignant')
+        ('Élève', 'Élève'), ('Parent', 'Parent'), ('Enseignant', 'Enseignant')
     ]
     type_user = models.CharField(max_length=200, null=True, choices=TYPE_USER, default='Élève')
 
     # s'inscrire sur la platefoerme
-    def inscrire():
+    def inscrire(self):
         pass
-    
+
     # se connecter à son compte
-    def connecter():
+    def connecter(self):
         pass
 
     class Meta:
         abstract = True
 
+
 # creation de la classe Client(élève/parent d'élève) qui est un Utilisateur
 
 class Client(Utilisateur):
     def __str__(self):
-        info = self.civilité+" "+self.user.username
+        info = self.civilite + " " + self.user.username
         return info
-    
+
     # rechercher un Repetiteur
     def rechercher(self, matiere, classe, ville, quartier):
         pass
 
     # consulter le profil d'un Repetiteur
-    def consulterProfil(sel, repetiteur):
+    def consulterProfil(self, repetiteur):
         pass
 
 
@@ -82,14 +91,14 @@ class Client(Utilisateur):
 class Repetiteur(Utilisateur):
     niveauEtude = models.CharField(max_length=200, null=True)
     ville = models.CharField(max_length=200, null=True)
-    quartier = models.CharField(max_length=200, null=True) 
+    quartier = models.CharField(max_length=200, null=True)
 
     def __str__(self):
-        info = self.civilité+" "+self.prenom+" "+self.nom
+        info = self.civilite + " " + self.prenom + " " + self.nom
         return info
-   
+
     # s'inscrire : redefinir la methdode inscrire() de Utilisateur
-    def inscrire():
+    def inscrire(self):
         pass
 
     # modifier son profil (deja inscrit)
@@ -101,19 +110,19 @@ class Repetiteur(Utilisateur):
 
 class Cours(models.Model):
     JOURS = [
-        ('lundi','lundi'),('mardi','mardi'),('mercredi','mercredi'),('jeudi','jeudi'),
-        ('vendredi','vendredi'),('samedi','samedi'),('dimanche','dimanche')
+        ('lundi', 'lundi'), ('mardi', 'mardi'), ('mercredi', 'mercredi'), ('jeudi', 'jeudi'),
+        ('vendredi', 'vendredi'), ('samedi', 'samedi'), ('dimanche', 'dimanche')
     ]
     jour = models.CharField(max_length=200, null=True, choices=JOURS, default='lundi')
-    
+
     HEURES_DEBUT = [
-        ('7H','7H'),('8H','8H'),('9H','9H'),('10H','10H'),('11H','11H'),('12H','12H'),('13H','13H'),
-        ('14H','14H'),('15H','15H'),('16H','16H'),('17H','17H'),('18H','18H')
+        ('7H', '7H'), ('8H', '8H'), ('9H', '9H'), ('10H', '10H'), ('11H', '11H'), ('12H', '12H'), ('13H', '13H'),
+        ('14H', '14H'), ('15H', '15H'), ('16H', '16H'), ('17H', '17H'), ('18H', '18H')
     ]
-    heure_début = models.CharField(max_length=200, null=True, choices=HEURES_DEBUT, default='7H')
-    
+    heure_debut = models.CharField(max_length=200, null=True, choices=HEURES_DEBUT, default='7H')
+
     DUREE = [
-        ('1H','1H'),('1H30','1H30'),('2H','2H'),('2H30','2H30'),('3H','3H')
+        ('1H', '1H'), ('1H30', '1H30'), ('2H', '2H'), ('2H30', '2H30'), ('3H', '3H')
     ]
     duree = models.CharField(max_length=200, null=True, choices=DUREE, default='2H')
 
@@ -127,5 +136,5 @@ class Cours(models.Model):
     repetiteur = models.ForeignKey(Repetiteur, null=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        info = self.matiere.intitule+" "+self.classe.niveau
+        info = self.matiere.intitule + " " + self.classe.niveau
         return info

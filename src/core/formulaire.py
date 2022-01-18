@@ -1,25 +1,64 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.models import User
 from django.db.models import fields
-from django.db.models.base import Model
-from .models import Client
-         
+from .models import Client, Repetiteur, Cours
 
 
+# formulaire pour l'iscrition du client en rassemblant de 2 formulaires :
+# User (fourni par django)
+# Client (notre classe créée dans models.py)
 
-class Connexion(forms.Form):
-    #email = forms.EmailField(widget=forms.TextInput(attrs={'class': 'form-control',
-    #'type':'text','name': 'email','placeholder':'email'}), label='Email')
-    #password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control',
-    #'type':'password', 'name':'password','placeholder':'Password'}),label='Mot de passe')
+class UserForm(UserCreationForm):
     class Meta:
-        
-        Model = Client
-        fields = ['email', 'password']
+        model = User
+        fields = [
+            'username',
+            'first_name',
+            'last_name',
+            'email',
+            'password1',
+            'password2'
+        ]
 
-    #def __init__(self, *args, **kwargs):
-        #admin_check = kwargs.pop('admin_check', False)
-        #super(Connexion, self).__init__(*args, **kwargs)
-        #if not admin_check:
-            #del self.fields['admin']    
-    
+
+class RepetiteurForm(forms.ModelForm):
+    class Meta:
+        model = Repetiteur
+        fields = [
+            'type_user',
+            'civilite',
+            'langue',
+            'age',
+            'telephone',
+            'photoProfil',
+            'niveauEtude',
+            'ville',
+            'quartier',
+        ]
+
+
+class ClientForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = [
+            'type_user',
+            'age',
+            'civilite',
+            'langue',
+            'telephone',
+            'photoProfil'
+        ]
+
+
+class CoursForm(forms.ModelForm):
+    class Meta:
+        model = Cours
+        fields = [
+            'jour',
+            'heure_debut',
+            'duree',
+            'matiere',
+            'classe',
+            'repetiteur'
+        ]
