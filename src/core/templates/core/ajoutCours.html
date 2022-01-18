@@ -58,32 +58,34 @@
 
                     <div class="card card-body" style="background-color: #ebeff5;">
                         <span class="btn btn-primary  btn-sm btn-block">Votre liste de Cours</span>
-                        <table class="table table-sm">
-                            <tr>
-                                <th>Matière</th>
-                                <th>Classe</th>
-                                <th>Jour</th>
-                                <th>Début</th>
-                                <th>Durée</th>
-                                <th>Mise à Jour</th>
-                                <th>Supprimer</th>
-                            </tr>
+                        <div class="table-responsive">
+                            <table class="table table-sm table-hover">
+                                <tr>
+                                    <th>Matière</th>
+                                    <th>Classe</th>
+                                    <th>Jour</th>
+                                    <th>Début</th>
+                                    <th>Durée</th>
+                                    <th>Mise à Jour</th>
+                                    <th>Supprimer</th>
+                                </tr>
 
-                            {% for cours in coursList %}
-                                {% if user.id == cours.repetiteur.user.id %}
-                                    <tr>
-                                        <th>{{cours.matiere}}</th>
-                                        <th>{{cours.classe}}</th>
-                                        <th>{{cours.jour}}</th>
-                                        <th>{{cours.heure_début}}</th>
-                                        <th>{{cours.duree}}</th>
-                                        <th><a href="">Mettre à Jour</a></th>
-                                        <th><a href="">Supprimer</a></th>
-                                    </tr>
-                                {% endif %}
-                            {% endfor %}
+                                {% for cours in coursList %}
+                                    {% if user.id == cours.repetiteur.user.id %}
+                                        <tr>
+                                            <th>{{cours.matiere}}</th>
+                                            <th>{{cours.classe}}</th>
+                                            <th>{{cours.jour}}</th>
+                                            <th>{{cours.heure_début}}</th>
+                                            <th>{{cours.duree}}</th>
+                                            <th><a href="">Mettre à Jour</a></th>
+                                            <th><a href="">Supprimer</a></th>
+                                        </tr>
+                                    {% endif %}
+                                {% endfor %}
 
-                        </table>
+                            </table>
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-5">

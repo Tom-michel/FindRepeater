@@ -8,15 +8,16 @@ from django.contrib import messages
 from .models import Classe, Matiere, Repetiteur, Client, Cours
 
 def index(request):
-
     listR = Repetiteur.objects.all()
-    listCli = Client.objects.all()
+    listCours = Cours.objects.all()
     listRep = []
     for rep in listR:
         listRep.append(rep.user.username)
-    content = {'listRep':listRep}
+    content = {'listRep':listRep,'listCours':listCours}
     return render(request,'core/index.html', content)
 
+def profilDave(request):
+    return render(request, 'core/profil(dave).html')
 
 
 def profilReg(request):
@@ -111,12 +112,18 @@ def consulterProfil(request, pk):
 
 
 # la page où un enseignat peut visualiser/mofier son profil
+
 @login_required(login_url='connexionprof')
 def monProfil(request):
     coursList = Cours.objects.all()
+    coursTemp = Cours.objects.all()
+    cours = []
+    for c in coursTemp:
+        cours.append(c.repetiteur.user.id)
+
     repList = Repetiteur.objects.all()
 
-    content = {'coursList':coursList, repList:repList}
+    content = {'coursList':coursList, 'cours':cours,'repList':repList}
     return render(request, 'core/monProfil.html', content)
 
 
@@ -279,7 +286,8 @@ def connexionprof(request):
                 
                 if userAct in lisUSer:
                     login(request, user)
-                    return HttpResponseRedirect('ajoutCours')
+                    return HttpResponseRedirect('monProfil')
+                    # return HttpResponseRedirect('ajoutCours')
                 else:
                     msg1 = messages.info(request, "cet utilisateur ne correspond pas à un compte Enseignant !")
                 content1 = {
@@ -331,7 +339,7 @@ def ajoutCours(request):
             cours.save()
 
             coursList = Cours.objects.all()
-            return HttpResponseRedirect('ajoutCours')
+            return HttpResponseRedirect('monProfil')
         else:
             err = cours_form.errors
     else:

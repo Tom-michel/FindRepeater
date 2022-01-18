@@ -1,63 +1,154 @@
 {% extends 'core/base.html' %}
 {% load static %}
 
-{% block title %} Modifier votre profil{% endblock %}
+{% block title %} Profil enseignant {% endblock %}
 
 {% block content %}
+     <style>
+        body {
+            background: orange;
+        }
+
+        .form-control {
+            background-color: #fbfbff;
+        }
 
 
+        .form-control:focus {
+            box-shadow: 0 0 0 1px orange;
+            border-color: orange;   
+        }
+
+        .form-control:hover {
+            border-color: orange;
+            box-shadow: 0 0 0 1px orange;
+        }
         
- <div class="container-fluid rounded bg-white mt-5 ">
-    <div class="row">
-        <div class="col-lg-3 border-right shadow-lg rounded">
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="{% static 'core/img/profile.jpg' %}"><span class="font-weight-bold">Stone</span><span class="text-black-50">stoneboy@mail.com.my </span><span> </span></div>
-            <div class="d-flex flex-column align-items-center text-center p-3 py-5"><img class="rounded-circle mt-5" width="150px" src="{% static 'core/img/reglage.jpg' %}"><span class="font-weight-bold"></div>
+        .profile-button {
+            background: orange;
+            color: #000;
+        }
 
-        </div>
-        <div class="col-lg-9 border-right rounded">
-            <div class="p-5 py-5">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Réglages profile</h4>
+        .profile-button:hover {
+            background:rgba(255, 166, 0, 0.712);
+            color: #000;
+        }
 
-                    <br>
-                    <hr
-                    
-           class="align-content-center mx-auto"
-           style="width: 100px; height: 4px; background:linear-gradient(to right, orangered, yellow);"
-           />
-                </div>
+        .labels {
+            font-size: 15px;
+        }
+    </style>   
+    
 
+    <section class="py-5">
+        <div class="container rounded bg-white mt-4 mb-3 shadow">
+            <div class="row">
                 
-                <div class="row mt-2">
-                    
-                    <div class="col-md-6"><label class="labels">Nom</label><input type="text" class="form-control" placeholder="nom" value=""></div>
-                    <div class="col-md-6"><label class="labels">Prénom</label><input type="text" class="form-control" value="" placeholder="prenom"></div>
+                <div class="col-md-3 border-right shadow-lg">
+                    <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                        <img class="rounded-circle mt-5" width="150px" src="{% static 'core/img/profile.jpg' %}">
+                        <span class="font-weight-bold">Stone</span>
+                        <span class="text-black-50">stoneboy@mail.com.my</span>
+                        <span> </span>
+                    </div>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-md-6"><label class="labels">Numero tel</label><input type="text" class="form-control" placeholder="tel" value=""></div>
-                    <div class="col-md-6"><label class="labels">niveau d'étude</label><input type="text" class="form-control" placeholder="niveau" value=""></div>
-                    <div class="col-md-6"><label class="labels">date de naissance</label><input type="text" class="form-control" placeholder="ex 28/03/2001" value=""></div>
-                    <div class="col-md-6"><label class="labels">Ville</label><input type="text" class="form-control" placeholder="ville" value=""></div>
-                    <div class="col-md-6"><label class="labels">Email</label><input type="text" class="form-control" placeholder="email" value=""></div>
-                    <div class="col-md-6"><label class="labels">mot de passe</label><input type="password" class="form-control" placeholder="mot de passe" value=""></div>
-                    <div class="col-md-6"><label class="labels">Matières</label><select  class="form-control" placeholder="matière" value="">
-                        <option></option></select>
-                    </div>
-                    <div class="col-md-6"><label class="labels">Classes</label><select  class="form-control" placeholder="classe" value="">
-                        <option></option></select>
-                    </div>
-                    <div class="col-md-6"><label class="labels">Jours</label><select  class="form-control" placeholder="jours" value="">
-                        <option></option></select>
-                    </div>
-                    <div class="col-md-6"><label class="labels">Horaires</label><select  class="form-control" placeholder="horaire" value="">
-                        <option></option></select>
+
+                <div class="col-md-9 border-right">
+                    <div class="p-2 m-2">
+                        <div class="text-center py-3" style="color: orange;">
+                            <h4>Modifiez vos informations</h4>
+                        </div>
+                        <div class="row mt-2 text-center">
+                            <div class="col-md-6">
+                                <label class="labels">Nom</label>
+                                <input type="text" class="form-control" placeholder="first nom" value="">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="labels">Prénom</label>
+                                <input type="text" class="form-control" value="" placeholder="prenom">
+                            </div>
+                        </div>
+                        <div class="row mt-3 text-center">
+                            <div class="col-md-2">
+                                <label class="labels">Âge</label>
+                                <input type="text" class="form-control" value="" placeholder="">
+                            </div>
+                            <div class="col-md-5">
+                                <label class="labels">Téléphone</label>
+                                <input type="text" class="form-control" placeholder="tel" value="">
+                            </div>
+                            <div class="col-md-5">
+                                <label class="labels">Email</label>
+                                <input type="email" class="form-control" placeholder="email" value="">
+                            </div>
+                        </div>
+                        <div class="row mt-3 text-center">
+                            <div class="col-md-4">
+                                <label class="labels">niveau d'étude</label>
+                                <input type="text" class="form-control" placeholder="niveau" value="">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="labels">Ville</label>
+                                <input type="text" class="form-control" placeholder="ex 27/03/2001" value="">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="labels">Quartier</label>
+                                <input type="text" class="form-control" placeholder="ville" value="">
+                            </div>
+                        </div>
                     </div>
 
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Sauvegarder profile</button></div>
+                    <div class="pb-5">
+                        <div class="py-2 px-3 text-center" style="background-color: #ebeff563;">
+                            <span style="font-size: 25px; font-weight: bold;">
+                                Votre liste de cours
+                            </span><br><br>
+                            
+                            <style>th{border-right: orange solid 1px;}</style>
+
+                            <div class="table-responsive text-center">
+                                <table class="table table-sm table-hover">
+                                    <tr style="border-bottom: orange solid 3px;">
+                                        <th>Matière</th>
+                                        <th>Classe</th>
+                                        <th>Jour</th>
+                                        <th>Début</th>
+                                        <th>Durée</th>
+                                        <th>Ville</th>
+                                        <th>Mettre à Jour</th>
+                                        <th>Supprimer</th>
+                                    </tr>
+                
+                                    {% for c in coursList %}
+                                        {% if c.repetiteur.user.id == user.id %}
+                                            <tr>
+                                                <th>{{c.matiere}}</th>
+                                                <th>{{c.classe}}</th>
+                                                <th>{{c.jour}}</th>
+                                                <th>{{c.heure_début}}</th>
+                                                <th>{{c.duree}}</th>
+                                                <th>{{c.repetiteur.ville}}</th>
+                                                <th><a class="btn btn-sm btn-success" href="">Modifier</a></th>
+                                                <th><a class="btn btn-sm btn-danger" href="">Supprimer</a></th>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="mt-4 text-center">
+                            <a class="btn btn-primary profile-button" >Sauvegarder</a>
+                        </div>
+                        
+                    </div>
+                </div>
             </div>
         </div>
+    </section>
 
-</div>
-</div>
-</div>
-{% endblock%}
+{% endblock %}
+    
+    {% block footer %}  
+
+    {% endblock %}

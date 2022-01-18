@@ -7,58 +7,68 @@
 
 <section class="py-5">
     <div class="py-5">
-        <div class="container border border-light rounded bg-white shadow-lg text-center">
-            <p><h1>Profil de mon enseignant</h1></p>
+        <div class="py-2">
+            <h1 class="fw-fold text-center">Mon Profil</h1>
+          </div>
+          <hr class="align-content-center mx-auto"
+          style="width: 120px; height: 6px; background:linear-gradient(to right, orangered, yellow);">
         </div> 
-        
     </div>
     <div class="container">
-        {% for c in coursList %}
-            {% if c.repetiteur.user.id == user.id %}
-                <p>civilite : {{c.repetiteur.civilité}}</p>
-                <p>nom : {{c.repetiteur.user.last_name}}</p>
-                <p>prenom : {{c.repetiteur.user.first_name}}</p>
-                <p>âge : {{c.repetiteur.age}}</p>
-                <p>téléphone : {{c.repetiteur.telephone}}</p>
-                <p>addresse mail : {{c.repetiteur.user.email}}</p>
-                <p>niveau d'étude : {{c.repetiteur.niveauEtude}}</p>
-                <p>ville : {{c.repetiteur.ville}}</p>
-                <p>quartier : {{c.repetiteur.quartier}}</p>
+        {% for rep in repList %}
+            {% if rep.user.id == user.id %}
+                <p>civilite : {{rep.civilité}}</p>
+                <p>nom : {{rep.user.last_name}}</p>
+                <p>prenom : {{rep.user.first_name}}</p>
+                <p>âge : {{rep.age}}</p>
+                <p>téléphone : {{rep.telephone}}</p>
+                <p>addresse mail : {{rep.user.email}}</p>
+                <p>niveau d'étude : {{rep.niveauEtude}}</p>
+                <p>ville : {{rep.ville}}</p>
+                <p>quartier : {{rep.quartier}}</p>
             {% endif %}
         {% endfor %}
-        
 
-        <div class="card card-body" style="background-color: #ebeff5;">
-            <span class="btn btn-primary  btn-sm btn-block">Votre liste de Cours</span>
-            <table class="table table-sm">
-                <tr>
-                    <th>Matière</th>
-                    <th>Classe</th>
-                    <th>Jour</th>
-                    <th>Début</th>
-                    <th>Durée</th>
-                    <th>Ville</th>
-                    <th>Mise à Jour</th>
-                    <th>Supprimer</th>
-                </tr>
+        <div class="card card-body" style="background-color: #ebeff5; padding: 15px 20px;">
+            <span class="text-center" style="font-size: 25px; font-weight: bold; padding-bottom: 10px;">
+                Votre liste de cours
+            </span>
+            <style>
+                th{border-right: orange solid 1px;}
+            </style>
+            <div class="table-responsive text-center">
+                <table class="table table-sm table-hover">
+                    <tr style="border-bottom: orange solid 3px;">
+                        <th>Matière</th>
+                        <th>Classe</th>
+                        <th>Jour</th>
+                        <th>Début</th>
+                        <th>Durée</th>
+                        <th>Ville</th>
+                        <th>Mettre à Jour</th>
+                        <th>Supprimer</th>
+                    </tr>
 
-                {% for c in coursList %}
-                    {% if c.repetiteur.user.id == user.id %}
-                        <tr>
-                            <th>{{c.matiere}}</th>
-                            <th>{{c.classe}}</th>
-                            <th>{{c.jour}}</th>
-                            <th>{{c.heure_début}}</th>
-                            <th>{{c.duree}}</th>
-                            <th>{{c.repetiteur.ville}}</th>
-                            <th><a href="">Mettre à Jour</a></th>
-                            <th><a href="">Supprimer</a></th>
-                        </tr>
-                    {% endif %}
-                {% endfor %}
-
-            </table>
+                    {% for c in coursList %}
+                        {% if c.repetiteur.user.id == user.id %}
+                            <tr>
+                                <th>{{c.matiere}}</th>
+                                <th>{{c.classe}}</th>
+                                <th>{{c.jour}}</th>
+                                <th>{{c.heure_début}}</th>
+                                <th>{{c.duree}}</th>
+                                <th>{{c.repetiteur.ville}}</th>
+                                <th><a class="btn btn-sm btn-success" href="">Modifier</a></th>
+                                <th><a class="btn btn-sm btn-danger" href="">Supprimer</a></th>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                </table>
+            </div>
         </div>
+
+        <a class="text-center btn btn-warning" href="{% url 'profilReg' %}">Modifier mon profil</a>
+
     </div>
     
 
