@@ -38,6 +38,10 @@ class Utilisateur(models.Model):
         ('Monsieur','Monsieur'),('Mademoiselle','Mademoiselle'),('Madame','Madame')
     ]
     civilité = models.CharField(max_length=200, null=True, choices=CIVILITE, default='Monsieur')
+    LANGUE = [
+        ('fançais','fançais'),('anglais','anglais'),('bilingue','bilingue')
+    ]
+    langue = models.CharField(max_length=200, null=True, choices=LANGUE, default='fançais')
     age = models.IntegerField(null=True)
     
     # User possede déja : username, email, first_name, last_name, (password 1 et 2)

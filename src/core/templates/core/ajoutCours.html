@@ -5,94 +5,69 @@
 {% block title %}Inscription Parent/Elève{% endblock %}
 
 {% block content %} 
-    
+   <style>
+       .form-control:focus {
+            box-shadow: 0 0 0 1px orange;
+            border-color: orange;   
+        }
+
+        .form-control:hover {
+            border-color: orange;
+            box-shadow: 0 0 0 1px orange;
+        }
+   </style> 
 
 <section class="py-5">
     <div class="py-5">
         <div class="container border border-light rounded bg-white shadow-lg">
-            <div class="row">
-                <div class="col-lg-7">
-                    <div class="pb-lg-4 pt-lg-3">
+            <div class="row">   
+                <div class="col-md-12">
+                    <div class="pb-lg-4 pt-lg-3 text-center">
                         <h1 class="text-center">Ajout d'un nouveau cours</h1>
                         <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing, elit</p>
                     </div>
-                    <div class="pb-lg-4 pt-lg-3">
-                        <form method="POST" action="#" class="px-3">
-                            {% csrf_token %}
-                            
-                            <div class="col-lg-7">
-                                <div class="form-group">
-                                    <label for="type_user">Enseignant&emsp;</label>
-                                    {{cours_form.repetiteur}}
-                                </div>
-                                <div class="form-group">
-                                    <label for="type_user">Matière&emsp;</label>
-                                    {{cours_form.matiere}}
-                                </div>
-                                <div class="form-group">
-                                    <label for="type_user">Classe&emsp;</label>
-                                    {{cours_form.classe}}
-                                </div>
-                                <div class="form-group">
-                                    <label for="type_user">Jours&emsp;</label>
-                                    {{cours_form.jour}}
-                                </div>
-                                <div class="form-group">
-                                    <label for="type_user">Début du cours&emsp;</label>
-                                    {{cours_form.heure_début}}
-                                </div>
-                                <div class="form-group">
-                                    <label for="type_user">Durée&emsp;</label>
-                                    {{cours_form.duree}}
-                                </div>
-                            </div>
-                            <div class="col-lg-5">
-                                {{err}}
-                                <div class="d-flex justify-content-center my-5">
-                                    <input class="border border-white rounded-pill py-2 px-3 text-black" type="submit" value="Ajouter" style="background-color: orange;">
-                                </div>
-                            </div>
-                           
-                        </form>
-                    </div>
-
-                    <div class="card card-body" style="background-color: #ebeff5;">
-                        <span class="btn btn-primary  btn-sm btn-block">Votre liste de Cours</span>
-                        <div class="table-responsive">
-                            <table class="table table-sm table-hover">
-                                <tr>
-                                    <th>Matière</th>
-                                    <th>Classe</th>
-                                    <th>Jour</th>
-                                    <th>Début</th>
-                                    <th>Durée</th>
-                                    <th>Mise à Jour</th>
-                                    <th>Supprimer</th>
-                                </tr>
-
-                                {% for cours in coursList %}
-                                    {% if user.id == cours.repetiteur.user.id %}
-                                        <tr>
-                                            <th>{{cours.matiere}}</th>
-                                            <th>{{cours.classe}}</th>
-                                            <th>{{cours.jour}}</th>
-                                            <th>{{cours.heure_début}}</th>
-                                            <th>{{cours.duree}}</th>
-                                            <th><a href="">Mettre à Jour</a></th>
-                                            <th><a href="">Supprimer</a></th>
-                                        </tr>
-                                    {% endif %}
-                                {% endfor %}
-
-                            </table>
-                        </div>
-                    </div>
                 </div>
-                <div class="col-lg-5">
-                    <div class="d-flex justify-content-center">
-                        <figure><img class="img-fluid" src="{% static 'core/images/signup-image.jpg' %}" alt="sing up image"></figure>
-                        <a href="#" class="signup-image-link"></a>
-                    </div>
+            
+                <div class="col-md-12 text-center">
+                    
+                    <form method="POST" action="#">
+                        {% csrf_token %}
+                        
+                        <div class="row mt-3 text-center">
+                            <div class="col-md-6 offset-md-3">
+                                <label for="type_user">Vous êtes :&emsp;</label>
+                                <!-- <input type="text" id="id_repetiteur" name="repetiteur" class="form-control" placeholder="" value="{{rep}}"> -->
+                                {{cours_form.repetiteur}}
+                            </div>
+                        
+                            <div class="mt-3 col-md-3 offset-md-3 col-sm-6">
+                                <label for="matiere">Matière&emsp;</label>
+                                {{cours_form.matiere}}
+                            </div>
+                            <div class="mt-3 col-md-3 col-sm-6">
+                                <label for="type_user">Classe&emsp;</label>
+                                {{cours_form.classe}}
+                            </div>
+
+                            <div class="mt-3 col-md-3 offset-md-3 col-sm-6">
+                                <label for="type_user">Jours&emsp;</label>
+                                {{cours_form.jour}}
+                            </div>
+                            <div class="mt-3 col-md-2 col-sm-6">
+                                <label for="type_user">Heure&emsp;</label>
+                                {{cours_form.heure_début}}
+                            </div>
+                            <div class="mt-3 col-md-1 col-sm-6 ">
+                                <label for="type_user">Durée&emsp;</label>
+                                {{cours_form.duree}}
+                            </div>
+                        </div>
+                        {{err}}
+                        <div class="d-flex justify-content-center my-5">
+                            <input class="border border-white rounded-pill py-2 px-3 text-black" type="submit" value="Ajouter" style="background-color: orange;">
+                        </div>
+                        
+                    </form>
                 </div>
             </div>
         </div>

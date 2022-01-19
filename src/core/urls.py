@@ -7,7 +7,7 @@ urlpatterns = [
     
     path('profilDave',views.profilDave,name='profilDave'),
     
-    path('profilReg',views.profilReg,name='profilReg'),
+    path('user/enseignant/modifier_profil',views.profilReg,name='profilReg'),
     path('rech',views.rech,name='rech'),
     
     path('consulterProfil/<str:pk>',views.consulterProfil ,name='consulterProfil'),

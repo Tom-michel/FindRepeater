@@ -5,6 +5,12 @@
 
 {% block content %}
 
+<style>
+    .contact a i{
+        font-size: 30px;
+    }
+</style>
+
 <section class="py-5">
     <div class="py-5">
         <div class="container border border-light rounded bg-white shadow-lg text-center">
@@ -24,36 +30,77 @@
         <p>quartier : {{cours.repetiteur.quartier}}</p>
 
         <div class="card card-body" style="background-color: #ebeff5;">
-            <span class="btn btn-primary  btn-sm btn-block">Votre liste de Cours</span>
-            <table class="table table-sm">
-                <tr>
-                    <th>Matière</th>
-                    <th>Classe</th>
-                    <th>Jour</th>
-                    <th>Début</th>
-                    <th>Durée</th>
-                    <th>Ville</th>
-                    <th>Mise à Jour</th>
-                    <th>Supprimer</th>
-                </tr>
+            <span class="text-center" style="font-size: 25px; padding-bottom: 10px; color: orange;">
+                Liste des cours enseignés
+            </span>
+            <style>
+                th{border-right: orange solid 1px;}
+            </style>
+            <div class="table-responsive text-center">
+                <table class="table table-sm table-hover">
+                    <tr style="border-bottom: orange solid 3px; background-color: rgb(216, 210, 200);">
+                        <th>Matière</th>
+                        <th>Classe</th>
+                        <th>Jour</th>
+                        <th>Début</th>
+                        <th>Durée</th>
+                        <th>Ville</th>
+                    </tr>
 
-                {% for c in coursList %}
-                    {% if c.repetiteur.user.id == cours.repetiteur.user.id %}
-                        <tr>
-                            <th>{{c.matiere}}</th>
-                            <th>{{c.classe}}</th>
-                            <th>{{c.jour}}</th>
-                            <th>{{c.heure_début}}</th>
-                            <th>{{c.duree}}</th>
-                            <th>{{c.repetiteur.ville}}</th>
-                            <th><a href="">Mettre à Jour</a></th>
-                            <th><a href="">Supprimer</a></th>
-                        </tr>
-                    {% endif %}
-                {% endfor %}
+                    {% for c in coursList %}
+                        {% if c.repetiteur.user.id == cours.repetiteur.user.id %}
+                            <tr>
+                                <th>{{c.matiere}}</th>
+                                <th>{{c.classe}}</th>
+                                <th>{{c.jour}}</th>
+                                <th>{{c.heure_début}}</th>
+                                <th>{{c.duree}}</th>
+                                <th>{{c.repetiteur.ville}}</th>
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
 
-            </table>
+                </table>
+            </div>
         </div>
+
+        <style>
+            .contact a{
+                border-radius: 0;
+                width: 150px;
+                font-weight: bold;
+                padding-left: 0;
+                padding-right: 0;
+            }
+        </style>
+        <div class="pt-5 text-center contact">
+            <span class="text-center" style="font-size: 25px; color: orange;">
+                Contacts <br><br>
+            </span>
+            <a style="background-color: orange" class="text-center btn" href="https://wa.me/{{cours.repetiteur.telephone}}?text=Salut prof, j'ai visité la plateforme findrepeater.com et je suis intéressé par vous services de répétiteur">
+                <i style="color: green;" class="fab fa-whatsapp"></i><br>
+                whatsapp
+            </a>
+            <a style="background-color: rgb(246, 239, 162);;" class="text-center btn" href="mailto:{{cours.repetiteur.user.email}}?subject=Recherche d'un répétiteur&body=Salut prof, j'ai visité la plateforme findrepeater.com et je suis intéressé par vous services de répétiteur">
+                <i style="color: red;" class="far fa-envelope"></i><br>
+                mail
+            </a>
+            <a style="background-color: rgb(226, 214, 86);" class="text-center btn" href="tel:{{cours.repetiteur.telephone}}">
+                <i style="color: #000;" class="fas fa-mobile-alt"></i><br>
+                appel
+            </a>
+        </div>        
+        
+        
+    
+    
+    
+    
+    
+    
+    
+    
+    
     </div>
     
 

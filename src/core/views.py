@@ -21,7 +21,11 @@ def profilDave(request):
 
 
 def profilReg(request):
-    return render(request,'core/profileReglage.html')
+    coursList = Cours.objects.all()
+    repList = Repetiteur.objects.all()
+
+    content = {'coursList':coursList, 'repList':repList}
+    return render(request,'core/profileReglage.html', content)
 
 def rech(request):
     return render(request,'core/recherche2.html')
@@ -339,7 +343,7 @@ def ajoutCours(request):
             cours.save()
 
             coursList = Cours.objects.all()
-            return HttpResponseRedirect('monProfil')
+            return HttpResponseRedirect('modifier_profil')
         else:
             err = cours_form.errors
     else:

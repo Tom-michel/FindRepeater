@@ -235,12 +235,6 @@ body {
     text-decoration: none;
   }
 
-  .msg-btn:hover{
-  
-      color: #ffffff;
-      background: orange;
-      transition: .5s;
-  }
   .box-profile i{
       padding-left: 20px;
       font-size: 20px;
@@ -266,9 +260,5 @@ body {
   }
   
   .copyright {
-    background-color: #1a252f;
-  }
-
-  *{
     background-color: #1a252f;
   }

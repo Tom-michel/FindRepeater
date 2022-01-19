@@ -38,15 +38,13 @@
             </style>
             <div class="table-responsive text-center">
                 <table class="table table-sm table-hover">
-                    <tr style="border-bottom: orange solid 3px;">
+                    <tr style="border-bottom: orange solid 3px; background-color: rgb(216, 210, 200);">
                         <th>Matière</th>
                         <th>Classe</th>
                         <th>Jour</th>
                         <th>Début</th>
                         <th>Durée</th>
                         <th>Ville</th>
-                        <th>Mettre à Jour</th>
-                        <th>Supprimer</th>
                     </tr>
 
                     {% for c in coursList %}
@@ -58,8 +56,6 @@
                                 <th>{{c.heure_début}}</th>
                                 <th>{{c.duree}}</th>
                                 <th>{{c.repetiteur.ville}}</th>
-                                <th><a class="btn btn-sm btn-success" href="">Modifier</a></th>
-                                <th><a class="btn btn-sm btn-danger" href="">Supprimer</a></th>
                             </tr>
                         {% endif %}
                     {% endfor %}
@@ -67,7 +63,10 @@
             </div>
         </div>
 
-        <a class="text-center btn btn-warning" href="{% url 'profilReg' %}">Modifier mon profil</a>
+        <div class="text-center pt-5">
+            <a class="text-center btn btn-warning" href="{% url 'profilReg' %}">Modifier mon profil</a>
+        </div>
+        
 
     </div>
     

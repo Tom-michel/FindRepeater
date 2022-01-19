@@ -31,6 +31,7 @@ class RepetiteurForm(forms.ModelForm):
             'niveauEtude',
             'ville',
             'quartier',
+            'langue'
         ]
 class ClientForm(forms.ModelForm):
     class Meta():
@@ -40,7 +41,8 @@ class ClientForm(forms.ModelForm):
             'age',
             'civilité',
             'telephone',
-            'photoProfil'
+            'photoProfil',
+            'langue'
         ]
 class CoursForm(forms.ModelForm):
     class Meta():
