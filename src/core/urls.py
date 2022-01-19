@@ -20,6 +20,8 @@ urlpatterns = [
     path('user/enseignant/login', views.connexionprof,name='connexionprof'),
     path('user/enseignant/list_repetiteur', views.list_rep, name='list_repetiteur'),
     path('user/enseignant/ajoutCours', views.ajoutCours, name='ajoutCours'),
+    path('user/enseignant/modifCours/<str:pk>', views.modifCours, name='modifCours'),
+
     path('findrepeaper/recherche', views.recherche,name='recherche'),
     path('findrepeaper/recherche', views.redirect,name='redirect'),
     path('findrepeaper/resultatRecherche', views.resultatRecherche, name='resultatRecherche'),

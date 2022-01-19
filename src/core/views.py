@@ -355,7 +355,34 @@ def ajoutCours(request):
     }
     return render(request,'core/ajoutCours.html', content)
 
-    #return render(request, 'core/ajoutCours.html')
+
+# modification d'un cours par l'enseignant
+
+@login_required(login_url='inscriptionprof')
+def modifCours(request, pk):
+    err = ''
+    coursList = Cours.objects.all()
+    coursM = Cours.objects.get(id=pk)
+    cours_form = CoursForm(instance=coursM)
+
+    if request.method == "POST":
+        cours_form = CoursForm(data=request.POST, instance=coursM)
+        if cours_form.is_valid():
+            cours = cours_form.save()
+            cours.save()
+
+            coursList = Cours.objects.all()
+            return HttpResponseRedirect('../modifier_profil')
+        else:
+            err = cours_form.errors
+    content = {
+        'err':err,
+        'cours_form':cours_form,
+        'coursList':coursList,
+    }
+    return render(request,'core/ajoutCours.html', content)
+
+
 
 # fonction permettant de se déconnecter
 

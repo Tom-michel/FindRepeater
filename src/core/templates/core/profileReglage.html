@@ -138,7 +138,7 @@
                                                 <th>{{c.heure_début}}</th>
                                                 <th>{{c.duree}}</th>
                                                 <th>{{c.repetiteur.ville}}</th>
-                                                <th><a class="btn btn-sm btn-success" href="">Modifier</a></th>
+                                                <th><a class="btn btn-sm btn-success" href="{% url 'modifCours' c.id %}">Modifier</a></th>
                                                 <th><a class="btn btn-sm btn-danger" href="">Supprimer</a></th>
                                             </tr>
                                         {% endif %}
@@ -148,7 +148,7 @@
                         </div>
 
                         <div class="mt-4 text-center">
-                            <a href="" class="btn btn-primary profile-button" >Sauvegarder</a>
+                            <input class="btn btn-primary profile-button text-black" type="submit" value="Sauvegarder" style="background-color: orange;">
                         </div>
                         
                     </div>
