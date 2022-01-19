@@ -1,6 +1,9 @@
-# FindRepeater
-Application web pour la recherche des répétiteurs au Cameroun, utile :
-- d'un côté comme un moyen pour les élèves/parents d'élèves de trouver des répétiteurs qui respectent ses critères (cours, classe, ville, quartier)
-- de l'autre côté comme moyen de propagande pour enseignants qui désirent donner des cours de répétitions.
+Titre du projet : FindRepeater
+Liste des developpeurs :
 
-Cette plateforme nait dans un contexte où la COVID-19 entraine une diminution des heures d'enseignement dans les écoles secondaires au cameroun, il en résulte une course vers les répétiteurs pour maintenir son niveau scolaire stable.
+          noms et prénoms            matricule     github
+  - BTOMPE TCHEUFFA Michel Rufin      19M2535   Tom-michel
+  - MENGUE OWONA Victor Audrey        19M2241   Menguevictor
+  - NGUETE TCHATAT Dave Nephtali      19M2293   Mcdavens4
+  - BIKIM BI NSOGA Jean Petit Yvelos  19M2596   jeanpetitt
+  - POUOKAM Nono Urielle              18T2673   Updesignn
