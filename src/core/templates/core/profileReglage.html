@@ -50,9 +50,16 @@
                         <img class="rounded-circle mt-5" width="150px" src="{% static 'core/img/profile.jpg' %}">
                         <span class="font-weight-bold">{{rep.user.username}}</span>
                         <span class="text-black-50">{{rep.user.email}}</span>
-                        <span> </span>
+                        <span class="pt-4"> 
+                            {{err}}
+                            {{err2}}
+                        </span>
                     </div>
                 </div>
+                    {% endif %}
+                {% endfor %}
+
+            
 
                 <div class="col-md-9 border-right">
                     <div class="p-2 m-2">
@@ -60,50 +67,136 @@
                             <h4>Modifiez vos informations</h4>
                         </div>
 
-                        <div class="row mt-2 text-center">
-                            <div class="col-md-6">
-                                <label class="labels">Nom</label>
-                                <input type="text" class="form-control" placeholder="nom" value="{{rep.user.last_name}}">
-                            </div>
-                            <div class="col-md-6">
-                                <label class="labels">Prénom</label>
-                                <input type="text" class="form-control" placeholder="prenom" value="{{rep.user.first_name}}">
-                            </div>
+                        <form method="POST" action="#" class="px-3">
+                        {% csrf_token %}
+
+                        <h4 class="text-center">Vos informations personnelles</h4>
+                        
+                        <div class="col-auto my-1">
+                            <label for="niveauEtude">Civilité &emsp;</label>
+                            {{rep_form.civilité}}
                         </div>
-                        <div class="row mt-3 text-center">
-                            <div class="col-md-2">
-                                <label class="labels">Âge</label>
-                                <input type="text" class="form-control" placeholder="votre âge" value="{{rep.age}}">
-                            </div>
-                            <div class="col-md-5">
-                                <label class="labels">Téléphone</label>
-                                <input type="text" class="form-control" placeholder="votre numero de telephone" value=" {{rep.telephone}}">
-                            </div>
-                            <div class="col-md-5">
-                                <label class="labels">Email</label>
-                                <input type="email" class="form-control" placeholder="email" value="{{rep.user.email}}">
-                            </div>
+                        <div class="form-group">
+                            {{user_form.last_name}}
                         </div>
-                        <div class="row mt-3 text-center">
-                            <div class="col-md-4">
-                                <label class="labels">niveau d'étude</label>
-                                <input type="text" class="form-control" placeholder="niveau" value="{{rep.niveauEtude}}">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="labels">Ville</label>
-                                <input type="text" class="form-control" placeholder="ville" value="{{rep.ville}}">
-                            </div>
-                            <div class="col-md-4">
-                                <label class="labels">Quartier</label>
-                                <input type="text" class="form-control" placeholder="quartier" value="{{rep.quartier}}">
-                            </div>
+                        <div class="form-group">
+                            {{user_form.first_name}}
                         </div>
+                        <div class="form-group">
+                            <label for="age">Votre âge (ans) &emsp;</label>
+                            {{rep_form.age}}
+                        </div>
+                        <div class="form-group">
+                            {{rep_form.telephone}}
+                        </div>
+                        <div class="form-group">
+                            <em class="text-danger">{{form.email.errors}}</em>
+                            {{user_form.email}}
+                        </div>
+                        <div class="form-group">
+                            <label for="photoProfil">Photo de Profil</label>
+                            {{rep_form.photoProfil}}
+                        </div>
+
+                        <h4 class="text-center">Vos informations professionnelles</h4>
+                        
+                        <div class="form-group">
+                            <label for="type_user">Vous êtes un &emsp;</label>
+                            {{rep_form.type_user}}
+                        </div>
+                        <div class="form-group">
+                            <label for="langue">Langue d'enseignement</label>
+                            {{rep_form.langue}}
+                        </div>
+                        <div class="form-group">
+                            {{rep_form.niveauEtude}}
+                        </div>
+                        <div class="form-group">
+                            {{rep_form.ville}}
+                        </div>
+                        <div class="form-group">
+                            {{rep_form.quartier}}
+                        </div>
+
+                        <h4 class="text-center">Vos informations de connexion</h4>
+                        
+                        <div class="form-group">
+                            {{user_form.username}}
+                        </div>
+                        <div class="form-group">
+                            <em class="text-danger">{{form.password.errors}}</em>
+                            {{user_form.password1}}
+                        </div>
+                        <div class="form-group">
+                            <em class="text-danger">{{form.password.errors}}</em>
+                            {{user_form.password2}}
+                        </div>
+                        <div class="d-flex justify-content-center my-5">
+                            <input class="btn btn-primary profile-button rounded-pill text-black py-2 px-3" type="submit" value="Sauvegarder" style="background-color: orange;">
+                        </div>
+                    </form> 
+
+                        {% comment %} <form method="POST" action="#">
+                            {% csrf_token %}
+
+                            <div class="row mt-2 text-center">
+                                <div class="col-md-6">
+                                    <label class="labels">Nom</label>
+                                    {{user_form.last_name}}
+                                    <!-- <input type="text" class="form-control" placeholder="nom" value="{{rep.user.last_name}}"> -->
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="labels">Prénom</label>
+                                    {{user_form.first_name}}
+                                    <!-- <input type="text" class="form-control" placeholder="prenom" value="{{rep.user.first_name}}"> -->
+                                </div>
+                            </div>
+                            <div class="row mt-3 text-center">
+                                <div class="col-md-2">
+                                    <label class="labels">Âge</label>
+                                    {{rep_form.age}}
+                                    <!-- <input type="text" class="form-control" placeholder="votre âge" value="{{rep.age}}"> -->
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="labels">Téléphone</label>
+                                    {{rep_form.telephone}}
+                                    <!-- <input type="text" class="form-control" placeholder="votre numero de telephone" value=" {{rep.telephone}}"> -->
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="labels">Email</label>
+                                    {{user_form.email}}
+                                    <!-- <input type="email" class="form-control" placeholder="email" value="{{rep.user.email}}"> -->
+                                </div>
+                            </div>
+                            <div class="row mt-3 text-center">
+                                <div class="col-md-4">
+                                    <label class="labels">niveau d'étude</label>
+                                    {{rep_form.niveauEtude}}
+                                    <!-- <input type="text" class="form-control" placeholder="niveau" value="{{rep.niveauEtude}}"> -->
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="labels">Ville</label>
+                                    {{rep_form.ville}}
+                                    <!-- <input type="text" class="form-control" placeholder="ville" value="{{rep.ville}}"> -->
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="labels">Quartier</label>
+                                    {{rep_form.quartier}}
+                                    <!-- <input type="text" class="form-control" placeholder="quartier" value="{{rep.quartier}}"> -->
+                                </div>
+                            </div>
+
+                            <div class="mt-4 text-center">
+                                <input class="btn btn-primary profile-button text-black" type="submit" value="Sauvegarder" style="background-color: orange;">
+                            </div>   
+                        </form> {% endcomment %}
+                    
                     </div>
                     
-                    {% endif %}
-                {% endfor %}
+                    {% comment %} {% endif %}
+                {% endfor %} {% endcomment %}
 
-                    <div class="pb-5">
+                    {% comment %} <div class="pb-5">
                         <div class="text-center py-3" style="color: orange;">
                             <h4>Votre liste de cours</h4>
                         </div>
@@ -146,16 +239,23 @@
                                 </table>
                             </div>
                         </div>
-
-                        <div class="mt-4 text-center">
-                            <input class="btn btn-primary profile-button text-black" type="submit" value="Sauvegarder" style="background-color: orange;">
-                        </div>
                         
-                    </div>
-                </div>
+                    </div> {% endcomment %}
+                </div>            
             </div>
         </div>
     </section>
+
+    <script>
+		var form_fields = document.getElementsByTagName('input')
+		
+		form_fields[11].placeholder='Taper le nouveau mot de passe...';
+		form_fields[12].placeholder='Ratapez le mot de passe...';
+
+		for (var field in form_fields){
+			form_fields[field].className += ' form-control'
+		}
+	</script>
 
 {% endblock %}
     

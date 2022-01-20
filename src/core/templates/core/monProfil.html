@@ -26,25 +26,40 @@
                 <p>niveau d'étude : {{rep.niveauEtude}}</p>
                 <p>ville : {{rep.ville}}</p>
                 <p>quartier : {{rep.quartier}}</p>
+
+                <div class="text-center p-5">
+                    <a class="text-center rounded-pill py-2 px-3 btn btn-warning" href="{% url 'profilReg' rep.id user.id %}">Modifier mes informations</a>
+                </div>
             {% endif %}
         {% endfor %}
 
         <div class="card card-body" style="background-color: #ebeff5; padding: 15px 20px;">
-            <span class="text-center" style="font-size: 25px; font-weight: bold; padding-bottom: 10px;">
-                Votre liste de cours
-            </span>
+            <div class="row pb-3">
+                <div class="col-md-6 text-center">
+                    <span class="" style="font-size: 25px; font-weight: bold; padding-bottom: 10px; color: orange;">
+                        Mes cours
+                    </span>
+                </div>
+                
+                <div class="col-md-6 text-center">
+                    <span style="font-size: 18px;"><a href="{% url 'ajoutCours' %}">ajouter un cours ?</a></span>
+                </div>
+            </div>
+            
             <style>
                 th{border-right: orange solid 1px;}
             </style>
             <div class="table-responsive text-center">
                 <table class="table table-sm table-hover">
-                    <tr style="border-bottom: orange solid 3px; background-color: rgb(216, 210, 200);">
+                    <tr  style="border-bottom: orange solid 3px; background-color: rgb(216, 210, 200);">
                         <th>Matière</th>
                         <th>Classe</th>
                         <th>Jour</th>
                         <th>Début</th>
                         <th>Durée</th>
                         <th>Ville</th>
+                        <th>Mettre à Jour</th>
+                        <th>Supprimer</th>
                     </tr>
 
                     {% for c in coursList %}
@@ -56,21 +71,17 @@
                                 <th>{{c.heure_début}}</th>
                                 <th>{{c.duree}}</th>
                                 <th>{{c.repetiteur.ville}}</th>
+                                <th><a class="btn btn-sm btn-success" href="{% url 'modifCours' c.id %}">Modifier</a></th>
+                                <th><a class="btn btn-sm btn-danger" href="{% url 'supprimer' c.id %}">Supprimer</a></th>
                             </tr>
                         {% endif %}
                     {% endfor %}
                 </table>
             </div>
         </div>
-
-        <div class="text-center pt-5">
-            <a class="text-center btn btn-warning" href="{% url 'profilReg' %}">Modifier mon profil</a>
-        </div>
         
-
     </div>
     
-
 </section>
 
 {% endblock %}

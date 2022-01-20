@@ -7,7 +7,7 @@ urlpatterns = [
     
     path('profilDave',views.profilDave,name='profilDave'),
     
-    path('user/enseignant/modifier_profil',views.profilReg,name='profilReg'),
+    path('user/enseignant/modifier_profil/<str:pk>/<str:pu>',views.profilReg,name='profilReg'),
     path('rech',views.rech,name='rech'),
     
     path('consulterProfil/<str:pk>',views.consulterProfil ,name='consulterProfil'),
@@ -21,6 +21,7 @@ urlpatterns = [
     path('user/enseignant/list_repetiteur', views.list_rep, name='list_repetiteur'),
     path('user/enseignant/ajoutCours', views.ajoutCours, name='ajoutCours'),
     path('user/enseignant/modifCours/<str:pk>', views.modifCours, name='modifCours'),
+    path('user/enseignant/supprimer/<str:pk>', views.supprimer, name='supprimer'),
 
     path('findrepeaper/recherche', views.recherche,name='recherche'),
     path('findrepeaper/recherche', views.redirect,name='redirect'),

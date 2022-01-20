@@ -6,6 +6,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Classe, Matiere, Repetiteur, Client, Cours
+from django.contrib.auth.models import User
 
 def index(request):
     listR = Repetiteur.objects.all()
@@ -20,12 +21,52 @@ def profilDave(request):
     return render(request, 'core/profil(dave).html')
 
 
-def profilReg(request):
+def profilReg(request, pk, pu):
+
+    err = ''
+    err2 = ''
     coursList = Cours.objects.all()
     repList = Repetiteur.objects.all()
+    repetiteur = Repetiteur.objects.get(id=pk)
+    for u in User.objects.all():
+        if u.id == repetiteur.user.id:
+            user = User.objects.get(id=pu)
+    
+    rep_form = RepetiteurForm(instance=repetiteur)
+    user_form = UserForm(instance=user)
+    if request.method == "POST":
+        rep_form = RepetiteurForm(data=request.POST, instance=repetiteur)
+        user_form = UserForm(data=request.POST, instance=user)
+        
+        if rep_form.is_valid() and user_form.is_valid:
+            rep = rep_form.save()
+            rep.save()
 
-    content = {'coursList':coursList, 'repList':repList}
+            use = user_form.save()
+            use.save()
+            repetit = rep_form.save(commit=False)
+            repetit.user = use
+            repetit.save()
+            return HttpResponseRedirect('../../monProfil')
+        else:
+            err = rep_form.errors
+            err2 = user_form.errors
+    content = {
+        'err':err,
+        'err2':err2,
+        'rep_form':rep_form,
+        'user_form':user_form,
+        'coursList':coursList,
+        'repList':repList,
+    }
     return render(request,'core/profileReglage.html', content)
+
+    # coursList = Cours.objects.all()
+    # repList = Repetiteur.objects.all()
+
+    # content = {'coursList':coursList, 'repList':repList}
+    # return render(request,'core/profileReglage.html', content)
+
 
 def rech(request):
     return render(request,'core/recherche2.html')
@@ -343,7 +384,7 @@ def ajoutCours(request):
             cours.save()
 
             coursList = Cours.objects.all()
-            return HttpResponseRedirect('modifier_profil')
+            return HttpResponseRedirect('monProfil')
         else:
             err = cours_form.errors
     else:
@@ -354,6 +395,18 @@ def ajoutCours(request):
         'coursList':coursList,
     }
     return render(request,'core/ajoutCours.html', content)
+
+
+# suppression d'un cours par l'enseignant
+
+@login_required(login_url='inscriptionprof')
+def supprimer(request, pk):
+    cours = Cours.objects.get(id=pk)
+    if request.method == 'POST':
+        cours.delete()
+        return HttpResponseRedirect('../monProfil')
+    content = {'cours':cours}
+    return render(request, 'supprimer.html', content)
 
 
 # modification d'un cours par l'enseignant
@@ -372,7 +425,7 @@ def modifCours(request, pk):
             cours.save()
 
             coursList = Cours.objects.all()
-            return HttpResponseRedirect('../modifier_profil')
+            return HttpResponseRedirect('../monProfil')
         else:
             err = cours_form.errors
     content = {
