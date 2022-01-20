@@ -18,3 +18,12 @@ def connexionClient(request):
 
 def recherche(request):
     return render(request, 'core/recherche.html')
+
+def pageProfiles(request):
+    return render(request, 'core/pageProfiles.html')
+
+def profileReglage(request):
+    return render(request, 'core/profileRéglage.html')
+
+def erreur404(request):
+     return render(request, 'core/erreur404.html')           

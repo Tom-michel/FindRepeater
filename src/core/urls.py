@@ -9,5 +9,8 @@ urlpatterns = [
     path('connexionClient', views.connexionClient,name='connexionClient'),
     path('connexionprof', views.connexionprof,name='connexionprof'),
     path('recherche', views.recherche,name='recherche'),
+    path('pageProfiles', views.pageProfiles,name='pageProfiles'),
+    path('profileRéglage', views.recherche,name='profileRéglage'),
+    path('erreur404', views.erreur404,name='erreur404'),
 
 ]
