@@ -4,47 +4,43 @@
     box-sizing: border-box;
 }
 h1{
-    color: #130a01;
+    color: orange;
     font-weight: 600;
     font-size: 3rem;
     opacity: 0.8;
 }
 h2,
 p{
-    color: #492b04;
+    color: #000000;
     font-weight: 500;
     opacity: 0.8;
 }
 h3{
-    color: #b86c17;
+    color: orange;
     font-weight: 600;
     opacity: 0.8;
 }
 main{
     font-family: "poppins", sans-serif;
     min-height: 100vh;
-    background: linear-gradient(to right top,#f36507ec,#030c0e77);
+    background: linear-gradient(to right top,#f5f5f5ec,#eaf1f377);
     display: flex;
     align-items: center;
     justify-content: center;
 }
 .glass{
-    background: white;
+    background: rgba(255, 243, 236, 0.979);
     min-height: 80vh;
     width: 60%;
-    background: linear-gradient(to right bottom,
-        rgba(255,255,255,0.7),
-        rgba(255,255,255,0.3)
-    );
-    border-radius: 2rem;
     z-index: 3;
-    backdrop-filter: blur(100rem);
     display: flex;
+    border-radius:  10px;
+    box-shadow: 2px 2px 12px rgba(49, 45, 45, 0.678);
 }
 .circle1,.circle2{
     background: white;
     background: linear-gradient(to right bottom,
-        rgb(206, 78, 18),
+        rgb(235, 77, 4),
         rgba(255,255,255,0.5)
     );
     height: 10rem;
@@ -57,8 +53,8 @@ main{
     top: 5%;
     right: 15%;
     background: linear-gradient(to right bottom,
-        rgb(31, 11, 2),
-        rgba(255,255,255,0.5)
+        rgb(240, 89, 19),
+        rgb(255, 123, 0)
     );
 }
 .circle2{
@@ -66,7 +62,7 @@ main{
     left: 10%;
 }
 .dashboard{
-    flex: 1;
+    flex: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -76,22 +72,22 @@ main{
         rgba(255, 255, 255, 0.7),
         rgba(255,255,255,0.3)
     );
-    border-radius: 2rem;
+    box-shadow: 6px 8px 6px rgba(122, 122, 122, 0.842);
 }
 .link{
     display: flex;
-    margin: 2rem 0rem;
+    margin: 2rem 1.5rem;
     padding: 1rem 5rem;
     align-items: center;
 }
 .link h2{
     padding: 0rem 2rem;
 }
-.games{
+.profil{
     flex: 2;
 }
 .pro{
-    background: linear-gradient(to right top,#f36507ec,#030c0e77);
+    background: linear-gradient(to right top,orange,#030c0e77);
     border-radius: 2rem;
     color: white;
     padding: 1rem;
@@ -108,23 +104,14 @@ main{
     font-weight: 600;
 }
 
+.status div{
+    margin: 1rem;
+    margin-bottom: 2rem;
+}
+
 /*GAMES */
-.status{
-    margin-bottom: 3rem;
-}
 
-.status input{
-    background: linear-gradient(to right bottom,
-    rgba(255,255,255,1),
-    rgba(255,255,255,0.5)
-);
-    border: none;
-    width: 50%;
-    padding: 0.5rem;
-    border-radius: 2rem;
-}
-
-.games {
+.profil {
     margin: 5rem;
     display: flex;
     flex-direction: column;
@@ -148,28 +135,11 @@ main{
 .recruter{
     padding: 0.5rem;
     margin: 2rem;
-    background: linear-gradient(to right top,#f36507ec,#030c0e77);
+    background: linear-gradient(to right top,rgba(255, 141, 34, 0.979),#f08842c7);
     border-radius: 2rem;
     color: white;
 
 }
 /* Fin games */
 
-.messagerie{
-    color: rgb(54, 10, 10);
-    border-radius: 1rem;
-    margin: 2rem 0rem;
-    padding: 2rem;
-    box-shadow: 6px 6px 20px rgba(122, 122, 122, 0.842);
-    background: linear-gradient(to right top,#f36507ec,#030c0e77);
 
-}
-.valide{
-    display: 50% ;
-    margin-top: 1rem ;
-    padding: 0.5rem;
-}
-.envoyer{
-    border-radius: 1rem;
-    padding: 0.6rem;
-}
