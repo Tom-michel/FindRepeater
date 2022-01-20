@@ -253,3 +253,14 @@ color: orange;
 .copyright {
   background-color: #1a252f;
 }
+.big-circle {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, orange, orangered);
+  bottom: 50%;
+  right: 38%;
+  transform: translate(-40%, 38%);
+  margin: -8px;
+}

@@ -1,0 +1,275 @@
+
+<head>
+  <link rel="stylesheet" href="/static/core/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+
+</head>
+<style>
+
+.h6, h6 {
+    font-size: .75rem !important;
+    font-weight: 500;
+    font-family: Roboto,Helvetica,Arial,sans-serif;
+    line-height: 1.5em;
+    text-transform: uppercase;
+}
+
+.name h6 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+
+.main-raised {
+    margin: -60px 30px 0;
+    border-radius: 6px;
+    box-shadow: 0 16px 24px 2px rgba(0,0,0,.14), 0 6px 30px 5px rgba(0,0,0,.12), 0 8px 10px -5px rgba(0,0,0,.2);
+}
+
+.main {
+    background: #FFF;
+    position: relative;
+    z-index: 3;
+}
+.profile-page{
+    margin:100px;
+}
+
+.profile-page .profile {
+    text-align: center;
+}
+
+.profile-page .profile img {
+    max-width: 160px;
+    width: 100%;
+    margin: 0 auto;
+    -webkit-transform: translate3d(0,-50%,0);
+    -moz-transform: translate3d(0,-50%,0);
+    -o-transform: translate3d(0,-50%,0);
+    -ms-transform: translate3d(0,-50%,0);
+    transform: translate3d(0,-50%,0);
+}
+
+.img-raised {
+    box-shadow: 0 5px 15px -8px rgba(0,0,0,.24), 0 8px 10px -5px rgba(0,0,0,.2);
+}
+
+
+
+
+.title {
+    margin-top: 10px;
+    margin-bottom: 25px;
+    min-height: 32px;
+    color: orange;
+    font-weight: 700;
+   
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.profile-page .gallery img {
+    width: 100%;
+    margin-bottom: 2.142rem;
+}
+
+.profile-page .profile .name{
+    margin-top: -80px;
+}
+
+img.rounded {
+    border-radius: 6px!important;
+}
+
+.tab-content>.active {
+    display: block;
+}
+
+/*buttons*/
+.btn {
+    position: relative;
+    padding: 12px 30px;
+    margin: .3125rem 1px;
+    font-size: .75rem;
+    font-weight: 400;
+    line-height: 1.428571;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    border: 0;
+    border-radius: .2rem;
+    outline: 0;
+    transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1);
+    will-change: box-shadow,transform;
+}
+
+.btn.btn-just-icon {
+    font-size: 20px;
+    height: 41px;
+    min-width: 41px;
+    width: 41px;
+    padding: 0;
+    overflow: hidden;
+    position: relative;
+    line-height: 41px;
+}
+
+.btn.btn-just-icon fa{
+    margin-top: 0;
+    position: absolute;
+    width: 100%;
+    transform: none;
+    left: 0;
+    top: 0;
+    height: 100%;
+    line-height: 41px;
+    font-size: 20px;
+}
+.btn.btn-link{
+    background-color: transparent;
+    color: gray;
+    left: 470;
+}
+.btn.btn-link:hover{
+    color: orange;
+}
+.btn.btn-t{
+    margin-top: 0;
+    
+    transform: none;
+    left: 470;
+    top: 0;
+    line-height: 41px;
+    font-size: 15px;
+    color: orange;
+}
+.btn.btn-t:hover{
+    background-color: #FFF;
+    color: orange;
+}
+
+
+
+.list{
+
+    margin: 1.071rem auto 0;
+    max-width: 210px;
+    color: orange;
+    font-weight: 3000;
+}
+</style>
+<body class="profile-page py-5">
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-dark py-2">
+    <a class="navbar-brand text-white fw-bold mx-5" href="{% url 'index' %}">FindRepeater</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+    <div class="ms-auto"></div>
+    <div class="collapse navbar-collapse mx-5">
+        <ul class="navbar-nav ms-auto my-2 my-lg-0 ">
+            <li class="nav-item"><a class="nav-link text-white" href=" {% url 'inscriptionprof' %} ">Devenir prof</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="{% url 'connexionClient' %}">Rechercher un prof</a></li>
+            <li class="nav-item"><a class="nav-link text-white" href="{% url 'connexionprof' %}">Connexion</a></li>
+        </ul>
+    </div>
+</nav>
+
+    
+  <div class="profile-content">
+          <div class="container">
+              <div class="row">
+                <div class="col-md-6 ml-auto mr-auto">
+                   <div class="profile">
+                        <div class="avatar">
+                            <img src="/static/core/img/profile.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                        </div>
+                        <div class="name">
+                            <h3 class="title">Monsieur Tom</h3>
+              <h6>21 ans vis à yaoundé,Essos</h6>
+              <h6>Langue d'enseignement : Français</h6>
+              <h6>E-mail : Tom@gmail.com</h6>
+            
+                        </div>
+                    </div>
+                </div>
+              </div>
+              
+
+      
+        
+      
+         
+        </div>
+
+      
+          </div>
+  <div class="container border">
+    
+    <h2 class="list">Liste des cours</h2>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Matière</th>
+                                                  <th>Classe</th>
+                                                  <th>Jour</th>
+                                                  <th>Début</th>
+                                                  <th>Durée</th>
+                                                  <th>Ville</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Informatique</td>
+            <td>Tle C</td>
+            <td>Samedi</td>
+            <td>10h</td>
+            <td>2h</td>
+            <td>Yaoundé</td>
+
+          </tr>
+        </tbody>
+
+      </table>
+      <div class="col-md-6 ml-auto mr-auto ">
+
+      </div><button class="btn btn-t " type="button">Contacter</button><br><a href="" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-instagram"></i></a>     <a href="#" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-facebook"></i></a>
+      <a href="" class="btn btn-just-icon btn-link btn-pinterest"><i class="fa fa-twitter"></i></a></div>
+
+    </div>
+    <br><br>
+
+
+
+
+      
+    </div>
+  </div>
+
+
+
+      </div>
+      
+</div>
+
+
+
+
+ 
+
+</body>

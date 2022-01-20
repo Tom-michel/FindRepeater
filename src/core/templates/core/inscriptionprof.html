@@ -5,12 +5,36 @@
 {% block title %} Inscription Prof {% endblock %}
 
 {% block content %} 
+<style>
+    .big-circle {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, orange, orangered);
+  bottom: 50%;
+  right: 38%;
+  transform: translate(-40%, 38%);
+  margin: -8px;
+}
+.big-circle:after {
+  content: "";
+  position: absolute;
+  width: 360px;
+  height: 360px;
+  background-color: #fafafa;
+  border-radius: 50%;
+  top: calc(50% - 180px);
+  left: calc(50% - 180px);
+}
 
+</style>
    <section class="py-5">
     <div class="py-lg-5">
         
-  
+ 
     <div class="container border border-light rounded bg-white shadow-lg">
+ 
         <div class="row">
             <div class="col-lg-6">
                 <div class="pb-lg-4 pt-lg-3">

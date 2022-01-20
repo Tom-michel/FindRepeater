@@ -24,4 +24,6 @@ def pageProfiles(request):
     return render(request, 'core/pageProfiles.html')
 def profileRéglage(request):
     return render(request, 'core/profileRéglage.html')
+def profileUser(request):
+    return render(request, 'core/profileUser.html')
 

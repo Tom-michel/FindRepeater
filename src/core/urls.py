@@ -13,6 +13,7 @@ urlpatterns = [
     path('erreur404', views.erreur404,name='erreur404'),
     path('pageProfiles', views.pageProfiles,name='pageProfiles'),
     path('profileRéglage', views.profileRéglage,name='profileRéglage'),
+    path('profileUser', views.profileUser,name='profileUser'),
 
 
 
