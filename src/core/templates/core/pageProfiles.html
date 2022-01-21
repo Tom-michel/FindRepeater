@@ -18,9 +18,9 @@
         </div>
     <div class="row">
         {% if not listCours %}
-            <div class="col-md-8 md-offset-2">
-                <p>
-                    Aucun enseignent trouvé, 
+            <div class="col-md-6 offset-md-3 text-center">
+                <p class="py-2 px-2" style="border: orangered solid 1px; border-radius: 10px;">
+                    <b>Oups</b>, aucun enseignent ne correspond à votre recherche, 
                     <a class="nav-link" href="{% url 'recherche' %}">Réessayer ?</a>
                 </p>
             </div>

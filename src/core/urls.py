@@ -6,6 +6,7 @@ urlpatterns = [
     path('',views.index,name='index'),
     
     path('profilDave',views.profilDave,name='profilDave'),
+    path('inscriptionprof01',views.devProf,name='inscriptionprof01'),
     
     path('user/enseignant/modifier_profil/<str:pk>/<str:pu>',views.profilReg,name='profilReg'),
     path('rech',views.rech,name='rech'),

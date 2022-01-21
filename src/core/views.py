@@ -17,6 +17,9 @@ def index(request):
     content = {'listRep':listRep,'listCours':listCours}
     return render(request,'core/index.html', content)
 
+def devProf(request):
+    return render(request, 'core/inscriptionprof01.html')
+
 def profilDave(request):
     return render(request, 'core/profil(dave).html')
 

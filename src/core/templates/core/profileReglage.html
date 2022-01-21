@@ -37,12 +37,33 @@
         .labels {
             font-size: 15px;
         }
+        .containere {
+            padding-top: 2rem;
+            position: relative;
+        
+            background-color: #fafafa;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @media screen and (max-width: 766px) {
+            section{
+                background-color: rgba(255, 166, 0, 0.336);
+            }
+        }
     </style>   
     
 
-    <section class="py-5">
+    <section class=" mt-2">
         <div class="container rounded bg-white mt-4 mb-3 shadow">
-            <div class="row">
+            <div class="containere">
+            <div class="py-2">
+                <h1 class="text-center">Modification du Profil</h1>
+              <hr class="align-content-center mx-auto"
+              style="width: 120px; height: 6px; background:linear-gradient(to right, orangered, yellow);">
+            
+            <div class="row" style="border: orange solid 2px;">
                 {% for rep in repList %}
                     {% if rep.user.id == user.id %}
                 <div class="col-md-3 border-right shadow-lg">
@@ -59,189 +80,90 @@
                     {% endif %}
                 {% endfor %}
 
-            
+                <div class="col-md-9">
+                    <div class="py-2 px-3 m-2">
 
-                <div class="col-md-9 border-right">
-                    <div class="p-2 m-2">
-                        <div class="text-center py-3" style="color: orange;">
-                            <h4>Modifiez vos informations</h4>
-                        </div>
-
-                        <form method="POST" action="#" class="px-3">
-                        {% csrf_token %}
-
-                        <h4 class="text-center">Vos informations personnelles</h4>
-                        
-                        <div class="col-auto my-1">
-                            <label for="niveauEtude">Civilité &emsp;</label>
-                            {{rep_form.civilité}}
-                        </div>
-                        <div class="form-group">
-                            {{user_form.last_name}}
-                        </div>
-                        <div class="form-group">
-                            {{user_form.first_name}}
-                        </div>
-                        <div class="form-group">
-                            <label for="age">Votre âge (ans) &emsp;</label>
-                            {{rep_form.age}}
-                        </div>
-                        <div class="form-group">
-                            {{rep_form.telephone}}
-                        </div>
-                        <div class="form-group">
-                            <em class="text-danger">{{form.email.errors}}</em>
-                            {{user_form.email}}
-                        </div>
-                        <div class="form-group">
-                            <label for="photoProfil">Photo de Profil</label>
-                            {{rep_form.photoProfil}}
-                        </div>
-
-                        <h4 class="text-center">Vos informations professionnelles</h4>
-                        
-                        <div class="form-group">
-                            <label for="type_user">Vous êtes un &emsp;</label>
-                            {{rep_form.type_user}}
-                        </div>
-                        <div class="form-group">
-                            <label for="langue">Langue d'enseignement</label>
-                            {{rep_form.langue}}
-                        </div>
-                        <div class="form-group">
-                            {{rep_form.niveauEtude}}
-                        </div>
-                        <div class="form-group">
-                            {{rep_form.ville}}
-                        </div>
-                        <div class="form-group">
-                            {{rep_form.quartier}}
-                        </div>
-
-                        <h4 class="text-center">Vos informations de connexion</h4>
-                        
-                        <div class="form-group">
-                            {{user_form.username}}
-                        </div>
-                        <div class="form-group">
-                            <em class="text-danger">{{form.password.errors}}</em>
-                            {{user_form.password1}}
-                        </div>
-                        <div class="form-group">
-                            <em class="text-danger">{{form.password.errors}}</em>
-                            {{user_form.password2}}
-                        </div>
-                        <div class="d-flex justify-content-center my-5">
-                            <input class="btn btn-primary profile-button rounded-pill text-black py-2 px-3" type="submit" value="Sauvegarder" style="background-color: orange;">
-                        </div>
-                    </form> 
-
-                        {% comment %} <form method="POST" action="#">
+                        <form method="POST" action="#">
                             {% csrf_token %}
 
+                            <div class="text-center py-3" style="color: orange;">
+                                <h4>Informations personnelles</h4>
+                            </div>
+
                             <div class="row mt-2 text-center">
-                                <div class="col-md-6">
+                                <div class="form-group col-md-2">
+                                    Civilité {{rep_form.civilité}}
+                                </div>
+                                <div class="col-md-5 offset-md-1">
                                     <label class="labels">Nom</label>
                                     {{user_form.last_name}}
-                                    <!-- <input type="text" class="form-control" placeholder="nom" value="{{rep.user.last_name}}"> -->
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-4">
                                     <label class="labels">Prénom</label>
                                     {{user_form.first_name}}
-                                    <!-- <input type="text" class="form-control" placeholder="prenom" value="{{rep.user.first_name}}"> -->
                                 </div>
                             </div>
                             <div class="row mt-3 text-center">
                                 <div class="col-md-2">
                                     <label class="labels">Âge</label>
                                     {{rep_form.age}}
-                                    <!-- <input type="text" class="form-control" placeholder="votre âge" value="{{rep.age}}"> -->
                                 </div>
-                                <div class="col-md-5">
-                                    <label class="labels">Téléphone</label>
-                                    {{rep_form.telephone}}
-                                    <!-- <input type="text" class="form-control" placeholder="votre numero de telephone" value=" {{rep.telephone}}"> -->
-                                </div>
-                                <div class="col-md-5">
+                                <div class="col-md-4">
                                     <label class="labels">Email</label>
                                     {{user_form.email}}
-                                    <!-- <input type="email" class="form-control" placeholder="email" value="{{rep.user.email}}"> -->
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="labels">Téléphone</label>
+                                    {{rep_form.telephone}}
+                                </div>
+                                <div class="col-md-3">
+                                    <label class="labels">niveau d'étude</label>
+                                    {{rep_form.niveauEtude}}
                                 </div>
                             </div>
                             <div class="row mt-3 text-center">
-                                <div class="col-md-4">
-                                    <label class="labels">niveau d'étude</label>
-                                    {{rep_form.niveauEtude}}
-                                    <!-- <input type="text" class="form-control" placeholder="niveau" value="{{rep.niveauEtude}}"> -->
-                                </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label class="labels">Ville</label>
                                     {{rep_form.ville}}
-                                    <!-- <input type="text" class="form-control" placeholder="ville" value="{{rep.ville}}"> -->
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <label class="labels">Quartier</label>
                                     {{rep_form.quartier}}
-                                    <!-- <input type="text" class="form-control" placeholder="quartier" value="{{rep.quartier}}"> -->
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="labels">Photo de profil</label>
+                                    {{rep_form.photoProfil}}
                                 </div>
                             </div>
 
-                            <div class="mt-4 text-center">
-                                <input class="btn btn-primary profile-button text-black" type="submit" value="Sauvegarder" style="background-color: orange;">
+                            <div class="text-center pt-4 mt-4" style="color: orange;">
+                                <h4>Informations de connexion</h4>
+                            </div>
+
+                            Nom d'utilisateur
+                            <div class="row mt-3 text-center">
+                                <div class="col-md-3">
+                                    {{user_form.username}}
+                                </div>
+                                <div class="col-md-5">
+                                    <em class="text-danger">{{form.password.errors}}</em>
+                                    {{user_form.password1}}
+                                </div>
+                                <div class="col-md-4">
+                                    <em class="text-danger">{{form.password.errors}}</em>
+                                    {{user_form.password2}}
+                                </div>
+                            </div>
+
+                            <div class="col-md-4 offset-md-4 mt-4 text-center">
+                                <input class="btn btn-primary rounded-pill profile-button text-black" type="submit" value="Sauvegarder" style="background-color: orange;">
                             </div>   
-                        </form> {% endcomment %}
+                        </form>
                     
                     </div>
-                    
-                    {% comment %} {% endif %}
-                {% endfor %} {% endcomment %}
 
-                    {% comment %} <div class="pb-5">
-                        <div class="text-center py-3" style="color: orange;">
-                            <h4>Votre liste de cours</h4>
-                        </div>
-                        <div class="py-2 px-3 text-center" style="background-color: #ebeff563;">
-                            
-                            <a class="btn btn-primary  btn-sm btn-block" href="{% url 'ajoutCours' %}" style="width: 100%; font-size: 20px; font-weight: bold;">
-                                Ajouter un Cours
-                            </a>
-                            
-                            
-                            <style>th{border-right: orange solid 1px;}</style>
-
-                            <div class="table-responsive text-center">
-                                <table class="table table-sm table-hover">
-                                    <tr  style="border-bottom: orange solid 3px; background-color: rgb(216, 210, 200);">
-                                        <th>Matière</th>
-                                        <th>Classe</th>
-                                        <th>Jour</th>
-                                        <th>Début</th>
-                                        <th>Durée</th>
-                                        <th>Ville</th>
-                                        <th>Mettre à Jour</th>
-                                        <th>Supprimer</th>
-                                    </tr>
-                
-                                    {% for c in coursList %}
-                                        {% if c.repetiteur.user.id == user.id %}
-                                            <tr>
-                                                <th>{{c.matiere}}</th>
-                                                <th>{{c.classe}}</th>
-                                                <th>{{c.jour}}</th>
-                                                <th>{{c.heure_début}}</th>
-                                                <th>{{c.duree}}</th>
-                                                <th>{{c.repetiteur.ville}}</th>
-                                                <th><a class="btn btn-sm btn-success" href="{% url 'modifCours' c.id %}">Modifier</a></th>
-                                                <th><a class="btn btn-sm btn-danger" href="">Supprimer</a></th>
-                                            </tr>
-                                        {% endif %}
-                                    {% endfor %}
-                                </table>
-                            </div>
-                        </div>
-                        
-                    </div> {% endcomment %}
                 </div>            
+            </div>
             </div>
         </div>
     </section>
