@@ -1,2 +1,2 @@
 
-web: gunicorn findRepeater.wsgi
+web: gunicorn src/findRepeater.wsgi
