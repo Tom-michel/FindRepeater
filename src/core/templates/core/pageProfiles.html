@@ -7,7 +7,7 @@
 
 
 <br><br>
-<div class="container py-5">
+<div class=" py-5">
     <div class="team_container">
         <div class="py-3">
             <h1 class="fw-fold text-center">Notre équipe de professeurs disponibles</h1>
@@ -16,67 +16,75 @@
            style="width: 120px; height: 6px; background:linear-gradient(to right, orangered, yellow); margin-bottom: 70px;"
            />
         </div>
-    <div class="row">
-        {% if not listCours %}
-            <div class="col-md-6 offset-md-3 text-center">
-                <p class="py-2 px-2" style="border: orangered solid 1px; border-radius: 10px;">
-                    <b>Oups</b>, aucun enseignent ne correspond à votre recherche, 
-                    <a class="nav-link" href="{% url 'recherche' %}">Réessayer ?</a>
-                </p>
-            </div>
-                
-        {% endif %}
-
-        {% if listCours %}
-            {% for cours in listCours %}
-                <div class="col-md-4">
-                    <div class="box-profile">
-                        <div class="cover-photo">
-                            <img src="{% static 'core/img/profile.jpg' %}" class="profile" alt="">
-                        </div>
-                        <div class="profile-name">
-                            <span style="font-size: 15px;">
-                                <!-- <a href="{% url 'consulterProfil' cours.id %}">{{cours.id}}</a>  -->
-                                {{cours.repetiteur.civilité}}
-                            </span><br>
-                            {{cours.repetiteur.user.first_name}} {{cours.repetiteur.user.last_name}}
-                        </div>
-                        <p class="age">
-                            A {{cours.repetiteur.age}} ans, vit à 
-                            <span style="font-size: 18px; color: orange;">{{cours.repetiteur.ville}}, {{cours.repetiteur.quartier}}</span> 
+        <div class="container">
+            <div class="row">
+                {% if not listCours %}
+                    <div class="col-md-6 offset-md-3 text-center">
+                        <p class="py-2 px-2" style="border: orangered solid 1px; border-radius: 10px;">
+                            <b>Oups</b>, aucun enseignent ne correspond à votre recherche, 
+                            <a class="nav-link" href="{% url 'recherche' %}">Réessayer ?</a>
                         </p>
-                        <p>Professeur de  
-                            {% for cour in listC %}
-                                {{cour}}, 
-                            {% endfor %}
-                        </p>
-
-                        <p>
-                            Enseigne en : 
-                            <span style="color: orange;">{{cours.repetiteur.langue}}.</span>
-                        </p>
-
-                        <button class="follow-btn">
-                            <a href="{% url 'consulterProfil' cours.id %}">Voir profil</a>
-                        </button>
-                        
-                        <div class="reseaux">
-                            <a style="text-decoration: none; color: silver;" href="tel:{{cours.repetiteur.telephone}}">
-                                <i class="fas fa-mobile-alt"></i>
-                            </a>
-                            <a style="text-decoration: none; color: silver;" href="https://wa.me/{{cours.repetiteur.telephone}}?text=Salut prof, j'ai visité la plateforme findrepeater.com et je suis intéressé par vous services de répétiteur">
-                                <i class="fab fa-whatsapp"></i>
-                            </a>
-                            <a style="text-decoration: none; color: silver;" href="mailto:{{cours.repetiteur.user.email}}?subject=Recherche d'un répétiteur&body=Salut prof, j'ai visité la plateforme findrepeater.com et je suis intéressé par vous services de répétiteur">
-                                <i class="far fa-envelope"></i>
-                            </a>
-                            
-                        </div>
                     </div>
-                </div>
-            {% endfor %}
-        {% endif %}
-
+                        
+                {% endif %}
+    
+                {% if listCours %}
+                    {% for cours in listCours %}
+                        <div class="col-md-4">
+                            <div class="box-profile">
+                                <div class="cover-photo">
+                                    <img src="{% static 'core/img/profile.jpg' %}" class="profile" alt="">
+                                </div>
+                                <div class="profile-name">
+                                    <span style="font-size: 15px;">
+                                        <!-- <a href="{% url 'consulterProfil' cours.id %}">{{cours.id}}</a>  -->
+                                        {{cours.repetiteur.civilité}}
+                                    </span><br>
+                                    {{cours.repetiteur.user.first_name}} {{cours.repetiteur.user.last_name}}
+                                </div>
+                                <p class="age">
+                                    A {{cours.repetiteur.age}} ans, vit à 
+                                    <span style="font-size: 18px; color: orange;">{{cours.repetiteur.ville}}, {{cours.repetiteur.quartier}}</span> 
+                                </p>
+                                <p>Professeur de  
+                                    {% for cour in listC %}
+                                        {{cour}}, 
+                                    {% endfor %}
+                                </p>
+    
+                                <p>
+                                    Enseigne en : 
+                                    <span style="color: orange;">{{cours.repetiteur.langue}}.</span>
+                                </p>
+    
+                                
+                                    <a href="{% url 'consulterProfil' cours.id %}">
+                                        <button class="follow-btn">
+                                            Voir profil
+                                        </button>
+                                    </a>
+                                
+                                
+                                <div class="reseaux">
+                                    <a style="text-decoration: none; color: silver;" href="tel:{{cours.repetiteur.telephone}}">
+                                        <i class="fas fa-mobile-alt"></i>
+                                    </a>
+                                    <a style="text-decoration: none; color: silver;" href="https://wa.me/{{cours.repetiteur.telephone}}?text=Salut prof, j'ai visité la plateforme findrepeater.com et je suis intéressé par vous services de répétiteur">
+                                        <i class="fab fa-whatsapp"></i>
+                                    </a>
+                                    <a style="text-decoration: none; color: silver;" href="mailto:{{cours.repetiteur.user.email}}?subject=Recherche d'un répétiteur&body=Salut prof, j'ai visité la plateforme findrepeater.com et je suis intéressé par vous services de répétiteur">
+                                        <i class="far fa-envelope"></i>
+                                    </a>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+    
+            </div>
+        </div>
+        
     </div>
 </div>
 

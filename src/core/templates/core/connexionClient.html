@@ -3,9 +3,10 @@
 {% block title %} Connexion Client {% endblock %}
 
 {% block content %}
-<section class="py-5 my-5">
-    <div class="container">
-   <div class="row">
+
+<section class="py-5" style="background-image:url(../../static/core/img/bgform.jpg); background-attachment: fixed; background-repeat:no-repeat; background-size: cover;">
+  <div class="container">
+   <div class="row pt-5">
     <div class=" col-md-6 offset-md-3 border border-light rounded bg-white shadow-lg">
       <form action="#" method="post">
        <div class="py-2">
@@ -42,7 +43,7 @@
             {% endif %}
             {% if not user.is_authenticated %}
               <input class="border border-white rounded-pill py-2 px-4 text-black" type="submit" value="connexion" style="background-color: orange;"><br><br>
-              <p class="text-center">Vous n'avez pas de compte ? <a href="{% url 'inscriptionprof' %}">S'inscrire</a></p>
+              <p class="text-center">Vous n'avez pas de compte ? <a href="{% url 'inscriptionClient' %}">S'inscrire</a></p>
               {% endif %}
           </div>
       </form>
