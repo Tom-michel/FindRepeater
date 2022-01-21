@@ -40,3 +40,6 @@ const gotoNextForm = (prev, next, stepPrev, stepNext) => {
     nextForm.classList.remove("form-active-animate")
   }, 1000)
 }
+
+
+

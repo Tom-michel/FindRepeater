@@ -17,12 +17,13 @@
 
      <!--  ============== Navbar Start ========================-->
 
-     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm py-2" id="myNavbar">
+     <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm py-2">
         <a class="navbar-brand fw-bold mx-lg-5" href="{% url 'index' %}">FindRepeater</a>
         <div class="ms-auto"></div>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse mx-lg-5">
             <ul class="navbar-nav ms-auto my-2 my-lg-0 ">
+                <li class="nav-item"><a class="nav-link" href=" {% url 'index' %} ">Accueil</a></li>
                 <li class="nav-item"><a class="nav-link" href=" {% url 'inscriptionprof' %} ">Devenir prof</a></li>
                 <li class="nav-item"><a class="nav-link" href="{% url 'connexionClient' %}">Rechercher un prof</a></li>
                 <li class="nav-item border border-warning bg-warning rounded-2"><a class="nav-link" href="{% url 'connexionprof' %}">Connexion</a></li>
@@ -118,6 +119,9 @@
     {% block js %}
 
     <!-- JS -->
+
+<script src="/static/core/js/script2.js"></script>
+
    
     <!-- Bootstrap core JS-->
   <script src="/static/core/js/bootstrap.bundle.min.js"></script>

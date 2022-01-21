@@ -6,25 +6,10 @@
 
 {% block content %} 
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body,
-input,
-textarea {
-  font-family: "Poppins", sans-serif;
-}
-
 .containere {
+  padding-top: 8rem;
   position: relative;
-  width: 100%;
-  min-height: 100vh;
-  padding: 2rem;
+ 
   background-color: #fafafa;
   overflow: hidden;
   display: flex;
@@ -51,7 +36,7 @@ textarea {
 
 .circle {
   border-radius: 50%;
-  background: linear-gradient(135deg, transparent 20%, orange);
+  background: linear-gradient(135deg, transparent 20%, red);
   position: absolute;
 }
 
@@ -88,7 +73,7 @@ form {
 }
 
 .title {
-  margin: 20px;
+
   padding: 20px;
   color: #fff;
   font-weight: 500;
@@ -283,8 +268,9 @@ textarea.input {
   border-radius: 50%;
   background: linear-gradient(to bottom, orange, orangered);
   bottom: 50%;
-  right: 50%;
+  right: 38%;
   transform: translate(-40%, 38%);
+  margin: -8px;
 }
 
 .big-circle:after {
@@ -394,92 +380,72 @@ textarea.input {
 }
 
 </style>
-<div class="containere">
-  <span class="big-circle"></span>
-  <img src="{% static 'core/img/img.jpg' %}" class="square" alt="" />
-  <div class="form">
-    <div class="contact-info">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="containere">
+        <span class="big-circle"></span>
+        <img src="{% static 'core/img/img.jpg' %}" class="square" alt="" />
+        <div class="form">
+          <div class="contact-info">
+            
       
-
-      <div class="info">
-        <div class="information">
-          <img src="{% static 'core/img/img.jpg' %}" class="icon" alt="" />
-          
+            <div class="info">
+              <div class="information">
+                <img src="{% static 'core/img/img.jpg' %}" class="icon" alt="" />
+                
+              </div>
+              <div class="information">
+                recherchez un professeur via le formulaire de recherche proposé par FindRepeater
+  
+              </div>
+              <div class="information">
+              </div>
+            </div>
+      
+            
+          </div>
+      
+          <div class="contact-form">
+            <span class="circle one"></span>
+            <span class="circle two"></span>
+      
+            <form action="">
+              <div class="col"></div>
+              <h3 class="title">Recherche un prof</h3>
+              <div class="input-container">
+                <select id="matiere" class="input">
+                  <option selected>Matières...</option>
+                  <option>...</option>
+                </select>
+              </div>
+              <div class="input-container">
+                <select id="niveau" class="input">
+                  <option selected>Niveau...</option>
+                  <option>...</option>
+                </select>
+              </div>
+              <div class="input-container">
+                <select id="ville" class="input">
+                  <option selected>Ville...</option>
+                  <option>...</option>
+                </select>
+              </div>
+  
+      
+      
+              <input type="submit" value="Rechercher" class="btn" />
+            </form>
+          </div>
         </div>
-        <div class="information">
-
-        </div>
-        <div class="information">
-
-        </div>
-      </div>
-
-      <div class="social-media">
-        <div class="social-icons">
-          <a href="#">
-            <i class="fab fa-facebook-f"></i>
-          </a>
-          <a href="#">
-            <i class="fab fa-twitter"></i>
-          </a>
-          <a href="#">
-            <i class="fab fa-instagram"></i>
-          </a>
-          <a href="#">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-        </div>
-      </div>
     </div>
-
-    <div class="contact-form">
-      <span class="circle one"></span>
-      <span class="circle two"></span>
-
-      <form action="">
-        <h3 class="title">Recherche un prof</h3>
-
-        <div class="input-container">
-          <select id="matiere" class="input">
-            <option selected>Matières...</option>
-            <option>...</option>
-          </select>
-        </div><br>
-        <div class="input-container">
-          <select id="niveau" class="input">
-            <option selected>Niveau...</option>
-            <option>...</option>
-          </select>
-        </div><br>
-        <div class="input-container">
-          <select id="ville" class="input">
-            <option selected>Ville...</option>
-            <option>...</option>
-          </select>
-        </div><br>
-        <div class="input-container">
-          <select id="jour" class="input">
-            <option selected>Jour...</option>
-            <option>...</option>
-          </select>
-        </div><br>
-        <div class="input-container">
-          <select id="heure" class="input">
-            <option selected>Heure...</option>
-            <option>...</option>
-          </select>
-        </div><br>
-        <div class="input-container">
-          <select id="durée" class="input">
-            <option selected>Durée...</option>
-            <option>...</option>
-          </select>
-        </div><br>
-
-
-        <input type="submit" value="Rechercher" class="btn" />
-      </form>
+    <div class="col">
+      
+    </div>
+    <div class="col"></div>
     </div>
   </div>
+  
 </div>
+
 {% endblock %}

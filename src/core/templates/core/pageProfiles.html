@@ -1,23 +1,23 @@
 {% extends 'core/base.html' %}
+
 {% load static %}
 
-{% block title %} Connexion Professeur{% endblock %}
+{% block title %} Profils des enseignants{% endblock %}
 
 {% block content %}
 
-
-<br><br>
-<div class="container ">
+<div class="container py-5" style="background-image:url(static/core/img/bgform.jpg); background-attachment: fixed; background-repeat:no-repeat; background-size: cover;">
     <div class="team_container">
-        <div class="py-2">
-            <h1 class="fw-fold text-center">Notre équipes de professeurs</h1>
+        <div class="pt-lg-5">
+            <h1 class="fw-fold text-center pt-lg-4">Notre équipes de professeurs</h1>
             <hr
            class="align-content-center mx-auto"
            style="width: 120px; height: 6px; background:linear-gradient(to right, orangered, yellow);"
            />
           </div>
     <div class="row">
-        <div class="col-md-4"><br><br><br><br>    <div class="box-profile">
+        <div class="col-lg-4"><br><br><br><br>    
+            <div class="box-profile">
             <div class="cover-photo">
                 <img src="{% static 'core/img/profile.jpg' %}" class="profile" alt="">
             </div>
@@ -126,8 +126,5 @@
         </div></div>
     </div>
 </div>
-
-
-
 
 {% endblock %}

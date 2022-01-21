@@ -1,13 +1,11 @@
 {% extends "core/base.html"%}
 
-{% load static %}
-
 {% block title %}Inscription Parent/Elève{% endblock %}
 
 {% block content %} 
     
 
-<section class="py-5">
+<section class="py-5" style="background-image:url(static/core/img/bgform.jpg); background-attachment: fixed; background-repeat:no-repeat; background-size: cover;">
     <div class="py-5">
         
   
@@ -16,6 +14,10 @@
             <div class="col-lg-6">
                 <div class="pb-lg-4 pt-lg-3">
                     <h1 class="text-center">Création de compte</h1>
+                    <hr
+           class="align-content-center mx-auto"
+           style="width: 120px; height: 6px; background:linear-gradient(to right, orangered, yellow);"
+           />
                     <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing, elit</p>
                 </div>
                <form method="POST" action="#" class="px-3">
@@ -61,10 +63,10 @@
 
             </form> 
         </div>
-        <div class="col-lg-6">
-            <div class="d-flex justify-content-center">
-              <figure><img class="img-fluid" src="{% static 'core/images/signup-image.jpg' %}" alt="sing up image"></figure>
-              <a href="#" class="signup-image-link"></a>
+        <div class="col-lg-6 bg-warning">
+            <div>
+                {% load static %}
+              <figure><img class="img-fluid" src="{% static 'core/img/.jpg' %}" alt="sing up image"></figure>
           </div>
       </div>
   </div>
