@@ -7,96 +7,156 @@
 {% block content %} 
     
 
-<section class="py-5">
+<section class="py-5" style="background-image:url(../../static/core/img/bgform.jpg); background-attachment: fixed; background-repeat:no-repeat; background-size: cover;">
     <div class="py-5">
-        <div class="container border border-light rounded bg-white shadow-lg">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-7">
+                <div class="col-md-8 offset-md-2 border-light rounded bg-white shadow-lg px-5">
                     <div class="pb-lg-4 pt-lg-3">
                         <h1 class="text-center">Création de compte</h1>
-                        <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing, elit</p>
+                        <p class="text-center">Céez un compte en tant que <b>enseignant</b> afin afin d'être visible sur la platefore et être conatacté par toute personne désirant vos services</p>
                     </div>
                     {% if registered %}
-                        <h2>Vous êtes déja enregistré</h2>
+                        <h3>Vous êtes déja enregistré</h3>
                     {% endif %}
                     
+                    <style>
+                        h4{
+                            color: orange;
+                            padding: 15px 0;
+                        }
+                    </style>
+
                     <form method="POST" action="#" class="px-3">
                         {% csrf_token %}
 
-                        <h3 class="text-center">Vos informations personnelles</h3>
+                        <h4 class="text-center">Vos informations personnelles</h4>
                         
-                        <div class="col-auto my-1">
-                            <label for="niveauEtude">Civilité &emsp;</label>
-                            {{form2.civilité}}
+                        <div class="row mt-2 text-center">
+                            <div class="col-md-6">
+                                <div class="col-auto my-1">
+                                    <label for="niveauEtude">Civilité &emsp;</label>
+                                    {{form2.civilité}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-auto my-1">
+                                    <label for="type_user">Vous êtes &emsp;</label>
+                                    {{form2.type_user}}
+                                </div>
+                            </div>
+                            
                         </div>
-                        <div class="form-group">
-                            {{form1.last_name}}
+                        <div class="row mt-2 text-center">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{form1.last_name}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{form1.first_name}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            {{form1.first_name}}
+                        <div class="row mt-2 text-center">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{form2.age}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{form2.telephone}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="age">Votre âge (ans) &emsp;</label>
-                            {{form2.age}}
-                        </div>
-                        <div class="form-group">
-                            {{form2.telephone}}
-                        </div>
-                        <div class="form-group">
-                            <em class="text-danger">{{form.email.errors}}</em>
-                            {{form1.email}}
-                        </div>
-                        <div class="form-group">
-                            <label for="photoProfil">Photo de Profil</label>
-                            {{form2.photoProfil}}
+                        <div class="row mt-2 text-center">
+                            <div class="col-md-6 mt-2">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <em class="text-danger">{{form.email.errors}}</em>
+                                    {{form1.email}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="photoProfil">Photo de Profil</label>
+                                    {{form2.photoProfil}}
+                                </div>
+                            </div>
                         </div>
 
-                        <h3 class="text-center">Vos informations professionnelles</h3>
+                        <h4 class="text-center">Vos informations professionnelles</h4>
                         
-                        <div class="form-group">
-                            <label for="type_user">Vous êtes un &emsp;</label>
-                            {{form2.type_user}}
+                        <div class="row mt-2 text-center">
+                            <div class="col-md-6">
+                                <div class="col-auto my-1">
+                                    <label for="langue">Langue d'enseignement &emsp;</label>
+                                    {{form2.langue}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="niveauEtude">Niveau d'étude</label>
+                                <div class="form-group">
+                                    {{form2.niveauEtude}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="langue">Langue d'enseignement</label>
-                            {{form2.langue}}
-                        </div>
-                        <div class="form-group">
-                            {{form2.niveauEtude}}
-                        </div>
-                        <div class="form-group">
-                            {{form2.ville}}
-                        </div>
-                        <div class="form-group">
-                            {{form2.quartier}}
+                        <div class="row mt-2 text-center">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{form2.ville}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{form2.quartier}}
+                                </div>
+                            </div>
                         </div>
 
-                        <h3 class="text-center">Vos informations de connexion</h3>
+                        <h4 class="text-center">Vos informations de connexion</h4>
                         
-                        <div class="form-group">
-                            {{form1.username}}
+                        <div class="row mt-2 text-center">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{form1.username}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <em class="text-danger">{{form.password.errors}}</em>
+                                    {{form1.password1}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <em class="text-danger">{{form.password.errors}}</em>
-                            {{form1.password1}}
+                        <div class="row mt-2 text-center">
+                            <div class="col-md-6 offset-md-3">
+                                <div class="form-group">
+                                    <em class="text-danger">{{form.password.errors}}</em>
+                                    {{form1.password2}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <em class="text-danger">{{form.password.errors}}</em>
-                            {{form1.password2}}
-                        </div>
+
                         {{err1}}
                         {{err2}}
-                        <div class="d-flex justify-content-center my-5">
-                            <input class="border border-white rounded-pill py-2 px-3 text-white" type="submit" value="enregistrer" style="background-color: orange;">
+                        <div class="row mt-2 text-center">
+                            <div class="col-md-4 offset-md-4">
+                                <div class="d-flex justify-content-center my-5">
+                                    <input class="border border-white rounded-pill py-2 px-3 text-white" type="submit" value="enregistrer" style="background-color: orange;">
+                                </div>
+                            </div>
                         </div>
-                        <p>Vous avez déja un compte ? <a href="{% url 'connexionprof' %}">Se connecter</a></p>
+
+                        <div class="row mt-2 text-center">
+                            <div class="col-md-8 offset-md-2">
+                            <p>Vous avez déja un compte ? <a href="{% url 'connexionprof' %}">Se connecter</a></p>
+                            </div>
+                        </div>
+                        
                     </form> 
-                </div>
-                <div class="col-lg-5">
-                    <div class="d-flex justify-content-center">
-                        <figure><img class="img-fluid" src="{% static 'core/images/signup-image.jpg' %}" alt="sing up image"></figure>
-                        <a href="#" class="signup-image-link"></a>
-                    </div>
                 </div>
             </div>
         </div>

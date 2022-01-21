@@ -7,78 +7,136 @@
 {% block content %} 
     
 
-<section class="py-5">
+<section class="py-5" style="background-image:url(../../static/core/img/bgform.jpg); background-attachment: fixed; background-repeat:no-repeat; background-size: cover;">
     <div class="py-5">
-        <div class="container border border-light rounded bg-white shadow-lg">
+        <div class="container">
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-md-8 offset-md-2 border-light rounded bg-white shadow-lg px-5">
                     <div class="pb-lg-4 pt-lg-3">
                         <h1 class="text-center">Création de compte</h1>
-                        <p class="text-center">Lorem ipsum dolor sit amet consectetur adipisicing, elit</p>
+                        <p class="text-center">Créez un compte en tant que <b>élève</b> ou <b>parent</b> afin de recherche un répétiteur sur mesure, adapté à vos besoins</p>
                     </div>
                     {% if registered %}
                         <h2>Vous êtes déja enregistré</h2>
                     {% endif %}
                     
-                     <form method="POST" action="#" class="px-3">
+                    <style>
+                        h4{
+                            color: orange;
+                            padding: 15px 0;
+                        }
+                    </style>
+
+                    <form method="POST" action="#" class="px-3">
                         {% csrf_token %}
 
-                        <h3 class="text-center">Vos informations personnelles</h3>
+                        <h4 class="text-center">Vos informations personnelles</h4>
                         
-                        <div class="col-auto my-1">
-                            {{form2.civilité}}
+                        <div class="row mt-2 text-center">
+                            <div class="col-md-4">
+                                <div class="col-auto my-1">
+                                    <label for="niveauEtude">Civilité &emsp;</label>
+                                    {{form2.civilité}}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="col-auto my-1">
+                                    <label for="type_user">Vous êtes &emsp;</label>
+                                    {{form2.type_user}}
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="col-auto my-1">
+                                    <label for="langue">Langue d'etude &emsp;</label>
+                                    {{form2.langue}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            {{form1.last_name}}
+                        <div class="row mt-2 text-center">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{form1.last_name}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{form1.first_name}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            {{form1.first_name}}
+                        <div class="row mt-2 text-center">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{form2.age}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{form2.telephone}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <label for="age">Votre âge (ans) &emsp;</label>
-                            {{form2.age}}
+                        <div class="row mt-2 text-center">
+                            <div class="col-md-6 mt-2">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <em class="text-danger">{{form.email.errors}}</em>
+                                    {{form1.email}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="photoProfil">Photo de Profil</label>
+                                    {{form2.photoProfil}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            {{form2.telephone}}
-                        </div>
-                        <div class="form-group">
-                            <em class="text-danger">{{form.email.errors}}</em>
-                            {{form1.email}}
-                        </div>
-                        <div class="form-group">
-                            <label for="type_user">Vous êtes un &emsp;</label>
-                            {{form2.type_user}}
-                        </div>
-                        <div class="form-group">
-                            <label for="photoProfil">Photo de Profil</label>
-                            {{form2.photoProfil}}
-                        </div>
-                        <h3 class="text-center">Vos informations de connexion</h3>
+
+                        <h4 class="text-center">Vos informations de connexion</h4>
                         
-                        <div class="form-group">
-                            {{form1.username}}
+                        <div class="row mt-2 text-center">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    {{form1.username}}
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <em class="text-danger">{{form.password.errors}}</em>
+                                    {{form1.password1}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <em class="text-danger">{{form.password.errors}}</em>
-                            {{form1.password1}}
+                        <div class="row mt-2 text-center">
+                            <div class="col-md-6  offset-md-3">
+                                <div class="form-group">
+                                    <em class="text-danger">{{form.password.errors}}</em>
+                                    {{form1.password2}}
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <em class="text-danger">{{form.password.errors}}</em>
-                            {{form1.password2}}
+
+                            {{err1}}
+                            {{err2}}
+                        
+
+                        <div class="row mt-2 text-center">
+                            <div class="col-md-4 offset-md-4">
+                                <div class="d-flex justify-content-center my-5">
+                                    <input class="border border-white rounded-pill py-2 px-3 text-white" type="submit" value="enregistrer" style="background-color: orange;">
+                                </div>
+                            </div>
                         </div>
-                        {{err1}}
-                        {{err2}}
-                        <div class="d-flex justify-content-center my-5">
-                            <input class="border border-white rounded-pill py-2 px-3 text-white" type="submit" value="enregistrer" style="background-color: orange;">
+
+                        <div class="row text-center">
+                            <div class="col-md-8 offset-md-2">
+                            <p>Vous avez déja un compte ? <a href="{% url 'connexionClient' %}">Se connecter</a></p>
+                            </div>
                         </div>
-                        <p>Vous avez déja un compte ? <a href="{% url 'connexionClient' %}">Se connecter</a></p>
+
+                        
                     </form> 
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="d-flex justify-content-center">
-                        <figure><img class="img-fluid" src="{% static 'core/images/signup-image.jpg' %}" alt="sing up image"></figure>
-                        <a href="#" class="signup-image-link"></a>
-                    </div>
+
                 </div>
             </div>
         </div>
@@ -99,7 +157,7 @@
 		form_fields[5].placeholder='Entrez votre adresse mail...';
 		form_fields[7].placeholder="Nom d'utilisateur...";
 		form_fields[8].placeholder='Créez un mot de passe...';
-		form_fields[9].placeholder='Ratapez le mot de passe...';
+		form_fields[9].placeholder='Retapez le mot de passe...';
 
 		for (var field in form_fields){
 			form_fields[field].className += ' form-control'
