@@ -1,1 +1,1 @@
-web: gunicorn src/findRepeater.wsgi
+web: gunicorn src/findRepeater.wsgi --log-file-
