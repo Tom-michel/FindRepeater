@@ -1,2 +1,2 @@
-web: gunicorn src\findRepeater.wsgi
+web: gunicorn gettingstarted.wsgi
 init: FLASK_APP=run.py flask init_db/
