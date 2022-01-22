@@ -11,19 +11,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 import os
-from django.core.exceptions import ImproperlyConfigured
 from pathlib import Path
-
-def get_env_variable(var_name, default_value=None):
-    try:
-        return os.environ(var_name)
-    except KeyError:
-
-        if default_value is None:
-            msg_err = "Set the {} environnement variables".format(var_name)
-            raise ImproperlyConfigured(msg_err)
-        else:
-            return default_value        
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -34,7 +22,7 @@ TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = get_env_variable('SECRET_KEY', 'django-insecure-i4d0%n#s@fo%i+6mr^ddvupk@s=!%5e1b2jh++*rezba&dse7&')
+SECRET_KEY = 'django-insecure-i4d0%n#s@fo%i+6mr^ddvupk@s=!%5e1b2jh++*rezba&dse7&'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
