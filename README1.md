@@ -27,4 +27,5 @@ le deploiement de notre application c'est fait en plusieurs etapes a savoir:
     https://findrepeater.herokuapp.com
 
 
- 
+ # TEST ET LANCEMENT DE L'APPLICATION EN LOCAL
+ pour tester l'application il suffit a travers le terminal de se rendre sur le repertoire parent et taper la comande python manage.py runserver ou ./manage.py runserver sur linux, mac, git..
