@@ -13,4 +13,4 @@ ALLOWED_HOSTS = ['findrepeater.herokuapp.com']
 DATABASES['default'] = dj_database_url.config()
 
 MIDDLEWARE += ['whitenoise.middleware.WhiteNoiseMiddleware',]
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+#STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
